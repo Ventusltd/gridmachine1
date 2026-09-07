@@ -75,7 +75,21 @@ The owner's design, and it unifies two things I had been treating separately.
 
 Two consequences worth stating. First, this makes Scope the **cheapest possible test of the router**, because it exercises the dispatch without needing a project, a link or a table row. Second, it means Scope must not grow its own copy of the measurement: it is the same engines answering at a different origin, and a second implementation would drift from the first within a version or two.
 
-## GG-038 · Size filter, and what the evidence actually shows
+## GG-038 · Size filter — CORRECTED, the owner was right
+
+**My first answer was wrong, and wrong in a way worth recording.** I searched one repository, then wrote "every release held", which was a claim about the estate made from a search of part of it. The owner said the slider was there, and it is.
+
+**Found in the other repository.** A dual range control, `sizeMinRange` and `sizeMaxRange`, labelled for the smallest and largest project size in MW. It appears in **34 releases**, most recently `202609060232-pipelinenews`.
+
+**So this is a genuine regression, not a gap.** The control exists in one lineage and is absent from the one now being served. Sorting by capacity survived the move; the size slider did not.
+
+**And it is the first concrete instance of GG-039.** Two release lineages, no key joining them, so a control can be lost in the crossing and nobody can say when. The owner's line about picking up old random code is exactly this: without a key, neither of us can tell which lineage a build came from, and the burden lands on memory.
+
+**The technology filters are different.** I checked the same release for GG-026: it carries the same five technology buttons and no dropdown. So the missing long-tail technologies remain a gap rather than a regression, while the size slider is a regression. Two remembered controls, two different answers, and only a search of the right repository could separate them.
+
+**Assigned to a runner**, as the owner directed: sweep every repository in the estate for controls present in an older lineage and absent from the served one, and report them as a list rather than one at a time.
+
+### What the evidence actually showed, first pass (kept, because the error matters)
 
 Checked across every release held: v9.5, v9.6, v9.6.2, v9.7, and the three September stamped releases including the current one.
 
