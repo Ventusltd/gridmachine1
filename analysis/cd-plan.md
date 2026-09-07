@@ -1,12 +1,12 @@
 # HOMAGE TO TURING - live CD deploy plan, written by the continuous runners
 
-Updated 2026-09-07T16:15:34.823Z · cycle 4 · lane windows-rig
+Updated 2026-09-07T16:29:50.733Z · cycle 1 · lane windows-rig
 
 Rule: prove offline first; if offline cannot prove it, prove it on the testcode hosted runner; nothing is promoted by a runner. Promotion is the owner's call.
 
 | pair | proof route | offline outcome | hosted (latest) | determinism rate | median run | parallel |
 |---|---|---|---|---|---|---|
-| GG2050-PAIR-20260907T141211Z-W | offline (D:, network cut) | INCOMPLETE (2026-09-07T16:15:09.287Z) | e1d6dc7 in_progress | 27/27 | 35 s | 5 |
+| GG2050-PAIR-20260907T141211Z-W | offline (D:, network cut) | INCOMPLETE (2026-09-07T16:22:13.652Z) | 38dd298 in_progress | 27/27 | 43 s | 5 |
 
 ## Per-case (offline receipt)
 
@@ -38,13 +38,17 @@ A disease closes only on evidence. States beginning OK_ are legitimate outcomes,
 
 | cycle CPU avg | floor | CPUs | free RAM | D:\gridatlas-ci | SSD ceiling | testcode pairs | ceiling |
 |---|---|---|---|---|---|---|---|
-| 85.8% | 20% | 20 | 3.98 GB | 0.13 GB | 900 GB | 30 MB | 300 MB |
+| 63.1% | 20% | 20 | 6.34 GB | 0.13 GB | 900 GB | 30 MB | 300 MB |
+
+Memory governor: floor 3 GB, reserve 4 GB, measured cost 0.83 GB per copy, cap 3 of 3, floor hits 0, least free seen 3.37 GB.
+
+## Memory governor
+
+Floor 3 GB, reserve 4 GB, measured cost 0.83 GB per copy, cap 3 of 3, floor hits 0, least free seen 3.37 GB.
 
 ## Adjustments made by the runner
 
-- 2026-09-07T16:00:59.262Z 20260907T141211Z-W: free RAM 4.6 GB, repeats paused
-- 2026-09-07T16:15:01.318Z 20260907T141211Z-W: free RAM 5.0 GB, repeats paused
-- 2026-09-07T16:15:32.185Z 20260907T141211Z-W: free RAM 4.0 GB, repeats paused
+- 2026-09-07T16:29:47.092Z 20260907T141211Z-W: free RAM 3.4 GB against a 3 GB floor, repeats held this cycle
 
 
 ## Awaiting the owner
