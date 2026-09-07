@@ -25,6 +25,8 @@ Every item reported on 2026-09-07, with the ticket it became. All were reported 
 | 18 | A slider for filtering by project size, and sorting by the capacity column, were there before and are gone | GG-038 | Open. Sorting by capacity **is still present** in every release held, including the current one. A size **slider** is present in none of them, so it is a gap rather than a regression, on the evidence available |
 | 18b | No primary key across the two applications, so versions get mixed up. The other lane's inventory looks like the beginning of one | GG-039 | Open, and the most structural item of the night. A key already exists in the candidate-pair work and does not exist in production |
 | 18c | The spiders role: nervous system, backup to the engine, neural links to the amnesia repository, home of the maths and logic capsules; and rename the Spider printer label to Elements | [SPIDERS.md](SPIDERS.md), GG-040 | Recorded as architecture with one label ticket. The graph has already found a duplicate geodesy implementation, structurally, before anyone measured a span |
+| 19 | A well-working onshore solar arrival, but the layers control is dead and so is Scope from its dropdown. **Layers is the main priority: it worked before.** | GG-027, GG-037 | GG-027 raised to first priority and reclassified as a **regression**, on the owner's statement that it previously worked |
+| 19b | Remove Save image from the File menu. A reader can screenshot | GG-041 | Open, new. Print stays, image save goes |
 
 ## GG-036 · Print layout
 
@@ -117,3 +119,20 @@ The most important item of the night, and the owner's diagnosis is right: withou
 3. **Make the key the subject of the register.** Tickets then attach to a pair rather than to a URL, and "does this still happen" becomes answerable instead of a matter of memory.
 
 Once that exists, the question behind GG-026 and GG-038 stops being archaeology: a remembered control either belongs to a keyed pair or it never shipped, and either answer is a fact rather than a search.
+
+## GG-041 · Remove Save image
+
+| field | value |
+| --- | --- |
+| **Report** | The File menu offers Save image, which produces a download prompt for a PNG. It is not needed: a reader can screenshot |
+| **URL** | https://ventusltd.github.io/gridatlas/atlas/?repd_ref=6502&technology=solar&latitude=51.338767&longitude=0.913885&zoom=12 |
+| **Solved** | No |
+| **How** | Remove the control and its handler. **Print stays**, because a printed sheet carries the data credit and the composition stamp, which a screenshot does not. Removing the image path also removes the half of the export code that was found today to lose its attribution, so this closes part of GG-005 by deletion rather than by repair, which is the cheaper cure. Keep the blank-image check's lesson in the register even after the code goes, because the lesson outlives the path |
+
+## GG-027 raised · Layers is the main priority, and it is a regression
+
+The owner's statement changes its class: **it worked before.** So this is not a control that was never wired, it is one that stopped working, and the question is which version broke it.
+
+That makes it the same investigation as the missing size slider: a control present in an earlier lineage and absent or broken in the served one. Both are answered by the same runner sweep, and both are instances of GG-039, the missing key between lineages.
+
+Two facts already held that narrow it. The layer panel has a history of phone-specific faults, including one where hiding layers collapsed the element containing the map. And every report tonight is against the root composition, which loads a different set of cartridges from the tested one. So the first measurement is cheap: **the same project on the tested version and on root, layers pressed on each.**

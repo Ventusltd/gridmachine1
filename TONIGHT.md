@@ -14,6 +14,12 @@
 
 ## Lane split, chosen so the lanes cannot collide
 
+### Windows lane · layers first, then interconnectors
+
+**GG-027, the layers control, is the owner's first priority and is now classed as a regression.** Before any code changes, settle which version broke it: the same project on the tested composition and on root, layers pressed on each. If it works on the tested version, the ticket is root promotion rather than a repair. If it fails on both, sweep the earlier lineage for the version where it last worked, the same sweep GG-038 needs.
+
+**GG-041 goes with it**, because it is deletion rather than construction: remove Save image from the File menu, keep Print.
+
 ### Windows lane · interconnectors, and the free half first
 
 **GG-033 step one, which needs no data collection.** The counterparty country is already held per link in the energy tracker. Bind it and say where each link goes, and distinguish a link that stays inside the UK from one that leaves it. This closes the visible half of GG-031 without waiting for any collection.
