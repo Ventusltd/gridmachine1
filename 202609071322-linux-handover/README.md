@@ -6,6 +6,7 @@ Read in this order, then do section 6 of the runbook.
 | --- | --- |
 | 202609071330-linux-clone-runbook.md | **start here** — clone the pinned vector, run the gates, replay offline, publish to testcode, return two links |
 | 202609071320-instructions-for-codex-runner.md | four ordered instructions for the worker (non-root user first) with the receipt wanted for each |
+| 202609071340-interconnector-integration-logic.md | the integration logic layer by layer: span model, identity, data flow, the tab outside the spine, the Atlas handover and arrival, eight testable invariants |
 | 202609071330-interconnectors-and-grid-engine.md | the state of interconnectors and the grid engine, and the CD trace (16/16 live artefacts match git) |
 | 202609071310-return-to-codex-coherence-handover.md | reply to the coherence-engine handover: reuse, gaps, the one-vector slice, seven proving tests |
 | 202609071300-reply-to-codex-linux-ci.md | reply to the 12:20 UTC Linux report; the sandbox fix and the closure |
