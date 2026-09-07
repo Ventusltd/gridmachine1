@@ -1,7 +1,7 @@
 {
  "lane": "windows-rig",
  "started_utc": "2026-09-07T16:22:12.745Z",
- "cycles": 26,
+ "cycles": 27,
  "pairs": {
   "20260907T141211Z-W": {
    "pair_id": "GG2050-PAIR-20260907T141211Z-W",
@@ -9,9 +9,9 @@
    "proof_route": "offline (D:, network cut)",
    "offline": {
     "outcome": "INCOMPLETE",
-    "run_utc": "2026-09-07T19:00:47.841Z",
+    "run_utc": "2026-09-07T19:01:12.405Z",
     "statement": "5 of 5 scored cases passed with a valid control; 1 requested behaviour(s) NOT_IMPLEMENTED, so the run is INCOMPLETE.",
-    "elapsed_ms": 18051,
+    "elapsed_ms": 18820,
     "cases": {
      "control-11386-harbour-farm": "PASS",
      "13429-ossian-derived": "PASS",
@@ -23,8 +23,15 @@
     }
    },
    "hosted": {
-    "fetched_utc": "2026-09-07T19:01:05.681Z",
+    "fetched_utc": "2026-09-07T19:01:30.991Z",
     "runs": [
+     {
+      "sha": "1b2f305",
+      "status": "in_progress",
+      "conclusion": null,
+      "url": "https://github.com/Ventusltd/testcode/actions/runs/34153910361",
+      "created": "2026-09-07T19:00:44Z"
+     },
      {
       "sha": "484f31b",
       "status": "in_progress",
@@ -87,45 +94,38 @@
       "conclusion": "success",
       "url": "https://github.com/Ventusltd/testcode/actions/runs/34150688085",
       "created": "2026-09-07T18:12:26Z"
-     },
-     {
-      "sha": "d521134",
-      "status": "completed",
-      "conclusion": "success",
-      "url": "https://github.com/Ventusltd/testcode/actions/runs/34149851496",
-      "created": "2026-09-07T18:00:01Z"
      }
     ]
    },
    "repeats": {
-    "runs": 568,
-    "pass": 568,
+    "runs": 606,
+    "pass": 606,
     "fail": 0,
     "harness_invalid": 0,
     "cases": {
      "control-11386-harbour-farm": {
-      "pass": 568,
-      "total": 568
+      "pass": 606,
+      "total": 606
      },
      "13429-ossian-derived": {
-      "pass": 568,
-      "total": 568
+      "pass": 606,
+      "total": 606
      },
      "13432-marram-unmapped": {
-      "pass": 568,
-      "total": 568
+      "pass": 606,
+      "total": 606
      },
      "INTNED-britned-midpoint-anchor": {
-      "pass": 568,
-      "total": 568
+      "pass": 606,
+      "total": 606
      },
      "INTNED-britned-gb-converter-anchor": {
-      "pass": 568,
-      "total": 568
+      "pass": 606,
+      "total": 606
      },
      "INTVKL-viking-gb-only": {
-      "pass": 568,
-      "total": 568
+      "pass": 606,
+      "total": 606
      },
      "INTNED-far-converter-to-gb": {
       "pass": 0,
@@ -133,44 +133,6 @@
      }
     },
     "elapsed_ms": [
-     36712,
-     39217,
-     39618,
-     37394,
-     37636,
-     44213,
-     44610,
-     43928,
-     43116,
-     43140,
-     42826,
-     42881,
-     43172,
-     43553,
-     42938,
-     42065,
-     42828,
-     43307,
-     44280,
-     44589,
-     43623,
-     43311,
-     43623,
-     44724,
-     43597,
-     43291,
-     42844,
-     43344,
-     42491,
-     43883,
-     44409,
-     43468,
-     43832,
-     43525,
-     43825,
-     36904,
-     36587,
-     36753,
      36237,
      36481,
      36788,
@@ -182,7 +144,45 @@
      37255,
      37247,
      36292,
-     35922
+     35922,
+     34285,
+     34997,
+     35644,
+     36406,
+     37203,
+     37503,
+     37458,
+     37143,
+     37035,
+     36744,
+     37204,
+     37550,
+     36701,
+     36992,
+     36695,
+     37002,
+     38160,
+     37399,
+     37477,
+     37172,
+     37965,
+     37495,
+     37704,
+     38006,
+     37485,
+     38064,
+     43762,
+     43405,
+     43388,
+     43295,
+     43933,
+     43942,
+     44130,
+     44416,
+     44819,
+     43980,
+     44428,
+     43817
     ]
    },
    "parallel": 5,
@@ -198,15 +198,15 @@
   }
  },
  "resources": {
-  "cycle_cpu_avg": 31,
+  "cycle_cpu_avg": 45.3,
   "cpu_floor_pct": 20,
   "cpus": 20,
-  "free_ram_gb": 4.6,
+  "free_ram_gb": 3.86,
   "d_gridatlas_ci_gb": 0.13,
   "ssd_ceiling_gb": 900,
-  "testcode_pairs_mb": 30,
+  "testcode_pairs_mb": 60,
   "testcode_ceiling_mb": 300,
-  "cycle_ms": 20712
+  "cycle_ms": 760645
  },
  "adjustments": [
   "2026-09-07T16:29:47.092Z 20260907T141211Z-W: free RAM 3.4 GB against a 3 GB floor, repeats held this cycle",
@@ -229,11 +229,11 @@
  "governor": {
   "ram_floor_gb": 3,
   "ram_reserve_gb": 4,
-  "observed_cost_gb_per_copy": 0.91,
+  "observed_cost_gb_per_copy": 0.43,
   "cap_now": 3,
   "cap_max": 3,
   "floor_hits": 0,
   "min_free_seen_gb": 3.14
  },
- "updated_utc": "2026-09-07T19:01:07.728Z"
+ "updated_utc": "2026-09-07T19:13:52.217Z"
 }
