@@ -26,7 +26,9 @@ Files touched: the interconnector data build and the arrival card. No overlap wi
 
 ### Linux lane · measurement and identity
 
-**GG-001, the firing rate, with its limitation stated.** Neither lane can drive a real iPhone, so build the harness that repeats each arrival against the published version online, cold, and reports a rate per case, and **label it a proxy rather than iOS**. A desktop WebKit run is closer than Chromium and still not Safari on a phone. The honest deliverable tonight is a rate plus a written statement of what it cannot see.
+**GG-001, the firing rate, on Android.** The owner's decision, 2026-09-07: **target Android phones and assume iPhone follows.** That removes the blocker rather than working around it. Android Chrome runs the same engine the harness already drives, so a phone-shaped run with touch input, a phone viewport and a device pixel ratio is materially the platform rather than a stand-in for it. Build it that way: cold cache, real network, each arrival repeated, a rate per case.
+
+What that still cannot see, said plainly so nobody over-reads the number: a real device's memory pressure and thermal behaviour, and any fault that only exists in Safari on iOS. The second is now an accepted risk by the owner's instruction, not an oversight.
 
 **GG-035, the identity disagreement.** Data-level work, no browser needed: the table lists projects the map's register snapshot does not contain. Quantify it, name the boundary, and propose which source wins.
 
@@ -34,7 +36,7 @@ Files touched: the test harness and the register comparison. No overlap with the
 
 ### For the owner, and only the owner can do it
 
-A scripted pass on the phone, because every report so far came from there and nothing else can see it:
+A scripted pass on the phone. Less is needed now that the target is Android, but two comparisons still need a human hand:
 
 1. Open the same project on the **tested** version and on root, and say whether the layers control fires on each. That single comparison decides GG-027 and tells us whether root promotion would close it.
 2. Do the same for print, and capture **one URL where print does not launch**, beside the one where it does. GG-028 cannot move without that pair.
