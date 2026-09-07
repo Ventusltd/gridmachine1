@@ -64,3 +64,23 @@ Conditions I am keeping, because they are what makes promotion safe rather than 
 ## Log
 
 Appended as the night goes. Each entry: time, ticket, what the study measured, what changed, what the verification said.
+
+### 22:42 UTC · GG-027 layers · study complete, fault located
+
+**The control is not dead. It half works, and that is worse.** Measured on one project, on both compositions, in three shapes, with the panel read identically before and after the tap:
+
+| shape | label before | label after | panel height | map height |
+| --- | --- | --- | --- | --- |
+| phone portrait | LAYERS | HIDE LAYERS | 591 -> 591 | 844 -> 844 |
+| phone landscape | LAYERS | HIDE LAYERS | 273 -> 273 | 390 -> 390 |
+| desktop | HIDE LAYERS | LAYERS | 342 -> 5 | 518 -> 886 |
+
+On a desktop the panel collapses and the map grows into the space it leaves. **On a phone the label flips and nothing else moves at all.** The tap registers, the button answers, and the panel it names ignores it. That is exactly what the owner reported, and it explains why it feels dead rather than broken.
+
+**Identical on root and on the tested composition**, so promotion would not have fixed it. The cheap hypothesis is closed and the ticket goes back to the code.
+
+**A caution recorded against my own work.** The first version of this study reported all six shapes as working. It read the label after the tap with a stricter matcher than it used before, found nothing, and treated a string differing from null as a change. My own test produced the vacuous pass I have spent the evening cataloguing in other code. Fixed by measuring both sides identically, which is now the rule in this harness.
+
+**Thermal guard added.** This firmware exposes no temperature sensor, so the runner watches the processor clock against its rated maximum and waits two minutes whenever it sits below three quarters of rated. Measured at idle: 2400 of 2400 MHz, no throttling.
+
+**How the runner is actually driven, since the question was asked.** The runner does not read this file and does not understand English. This file is for a person and for me. What the runner executes is a study written as code, with explicit selectors, explicit measurements and an explicit receipt. The translation from a sentence like "check whether the layers button fires" into a script that measures a panel height before and after a tap is the work, and it is mine. That is also why the vacuous pass above was possible: a badly written study runs just as obediently as a good one.
