@@ -1,0 +1,44 @@
+{
+ "schema": "gg2050.engine-capsule.v1",
+ "sealed_utc": "2026-09-07T21:43:04.374Z",
+ "generation": "202609071232",
+ "shell": "202608300453-atlas-v9",
+ "purpose": "The working 400 kV to 33 kV engines, sealed so they cannot be lost and can be copied from. The pattern, not a licence to copy the faults.",
+ "survives_at": [
+  "https://ventusltd.github.io/gridatlas/atlas/v/202609071232/ (published, never edited)",
+  "Ventusltd/testcode branches worker/windows-rig/pair-20260907T141211Z-W and pair-20260907T190239Z-W (full closure, offline-servable, with harness)",
+  "the source repository at the paths listed here"
+ ],
+ "parts": [
+  {
+   "id": "streaming-parquet-bridge",
+   "version": "v9.112",
+   "path": "atlas/cartridges/202609041945-streaming-parquet-bridge-v9-5.js",
+   "sha256": "4a6b594f7705bc4d7d62cbe69d2e40726d12f9a759896430cfe5eb00d830d23e",
+   "bytes": 13316
+  },
+  {
+   "id": "uk-gazetteer-flyto",
+   "version": "v9.145",
+   "path": "atlas/cartridges/202609071213-place-global-search-v9-5.js",
+   "sha256": "15f324e5c279050882f7e3ce83a915c070b6ed19095efcac4ae20af4ef19fdfa",
+   "bytes": 41120
+  },
+  {
+   "id": "sld-sandbox",
+   "version": "v9.146",
+   "path": "atlas/cartridges/202609071232-sld-sandbox-v9-8.js",
+   "sha256": "8916fa66f2cae3b1fe153dbb9e57af37c24081a151b199dfbdb1ed1801aee34b",
+   "bytes": 382999
+  },
+  {
+   "id": "substation-intelligence",
+   "version": "v9.140",
+   "path": "atlas/cartridges/202609062358-substation-intelligence-v9-63.js",
+   "sha256": "d94b0de50deddac77643325b10fbe490ce44b8c406dbc6c67e6e7cadbdaa8ec6",
+   "bytes": 451935
+  }
+ ],
+ "current_json_sha256": "42a8fa3933a6b36154513d1cea4240027510db0bb8ecd31dd195197c5855852b",
+ "authority": "If the three copies ever disagree, the published lane version is authoritative because it cannot be rewritten."
+}
