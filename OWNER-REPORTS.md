@@ -24,6 +24,7 @@ Every item reported on 2026-09-07, with the ticket it became. All were reported 
 | 17 | An offshore project that **does** fire, and Scope still dead. Scope should be its own cartridge, built like the poly tool, dispatching by class: onshore to the substation finder, offshore to the new offshore rule, interconnector to the interconnector rule | GG-034, GG-037 | Evidence added to both. The offshore observation changes the diagnosis and is written up below |
 | 18 | A slider for filtering by project size, and sorting by the capacity column, were there before and are gone | GG-038 | Open. Sorting by capacity **is still present** in every release held, including the current one. A size **slider** is present in none of them, so it is a gap rather than a regression, on the evidence available |
 | 18b | No primary key across the two applications, so versions get mixed up. The other lane's inventory looks like the beginning of one | GG-039 | Open, and the most structural item of the night. A key already exists in the candidate-pair work and does not exist in production |
+| 18c | The spiders role: nervous system, backup to the engine, neural links to the amnesia repository, home of the maths and logic capsules; and rename the Spider printer label to Elements | [SPIDERS.md](SPIDERS.md), GG-040 | Recorded as architecture with one label ticket. The graph has already found a duplicate geodesy implementation, structurally, before anyone measured a span |
 
 ## GG-036 · Print layout
 
