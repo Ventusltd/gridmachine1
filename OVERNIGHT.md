@@ -84,3 +84,17 @@ On a desktop the panel collapses and the map grows into the space it leaves. **O
 **Thermal guard added.** This firmware exposes no temperature sensor, so the runner watches the processor clock against its rated maximum and waits two minutes whenever it sits below three quarters of rated. Measured at idle: 2400 of 2400 MHz, no throttling.
 
 **How the runner is actually driven, since the question was asked.** The runner does not read this file and does not understand English. This file is for a person and for me. What the runner executes is a study written as code, with explicit selectors, explicit measurements and an explicit receipt. The translation from a sentence like "check whether the layers button fires" into a script that measures a panel height before and after a tap is the work, and it is mine. That is also why the vacuous pass above was possible: a badly written study runs just as obediently as a good one.
+
+### 00:25 UTC · GG-027 · diagnosis complete, from the owner's own screenshots
+
+The owner tapped layers on an iPhone 16 Pro Max and photographed both states. The label reads HIDE LAYERS in one and LAYERS in the other, on the same page, with no other visible difference. **The toggle fires. The panel opens where the reader cannot see it.**
+
+Emulation agreed and I misread it twice: the panel wrapper goes 0 to 345 on a Pixel and 0 to 132 in landscape, so it is opening. What emulation could not show is that on a phone the panel lives in the document below the map, while the project card is a fixed full-width bottom sheet sitting over that space. A ledger entry from v9.90 records the same collision from the other side: the card was made fixed, and the layer panel remained underneath it.
+
+So GG-027 is not a dead control and not a broken toggle. **It is a panel opening behind a sheet.** Three consequences:
+
+- The fix belongs with GG-029. If the card opens minimised, the space the panel needs is free, and one change serves both tickets.
+- The panel should open as an overlay within the map area on a phone, not in flow beneath a fixed element, so it cannot be covered again by the next sheet someone adds.
+- The one shape where it genuinely does not open, 658x320, is a separate and smaller fault: the collapse attribute never clears there.
+
+Recorded against my own work again: I called this dead, then broken on all phones, then working everywhere. Three readings, three wrong, corrected each time by measuring something better. The owner's two screenshots settled it in one message.
