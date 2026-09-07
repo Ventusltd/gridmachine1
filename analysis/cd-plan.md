@@ -1,12 +1,13 @@
 # HOMAGE TO TURING - live CD deploy plan, written by the continuous runners
 
-Updated 2026-09-07T19:13:52.217Z · cycle 27 · lane windows-rig
+Updated 2026-09-07T19:26:06.265Z · cycle 28 · lane windows-rig
 
 Rule: prove offline first; if offline cannot prove it, prove it on the testcode hosted runner; nothing is promoted by a runner. Promotion is the owner's call.
 
 | pair | proof route | offline outcome | hosted (latest) | determinism rate | median run | parallel |
 |---|---|---|---|---|---|---|
-| GG2050-PAIR-20260907T141211Z-W | offline (D:, network cut) | INCOMPLETE (2026-09-07T19:01:12.405Z) | 1b2f305 in_progress | 606/606 | 37 s | 5 |
+| GG2050-PAIR-20260907T141211Z-W | offline (D:, network cut) | INCOMPLETE (2026-09-07T19:13:57.218Z) | 4ba80f6 success | 606/606 | 37 s | 5 |
+| GG2050-PAIR-20260907T190239Z-W | offline (D:, network cut) | INCOMPLETE (2026-09-07T19:14:24.989Z) | 5137a25 success | 44/44 | 44 s | 5 |
 
 ## Per-case (offline receipt)
 
@@ -17,10 +18,27 @@ Rule: prove offline first; if offline cannot prove it, prove it on the testcode 
 - INTNED-britned-gb-converter-anchor: PASS · repeats 606/606
 - INTVKL-viking-gb-only: PASS · repeats 606/606
 - INTNED-far-converter-to-gb: NOT_IMPLEMENTED · repeats 0/0
+- control-11386-harbour-farm: PASS · repeats 44/44
+- 13429-ossian-derived: PASS · repeats 44/44
+- 13432-marram-unmapped: PASS · repeats 44/44
+- INTNED-britned-midpoint-anchor: PASS · repeats 44/44
+- INTNED-britned-gb-converter-anchor: PASS · repeats 44/44
+- INTVKL-viking-gb-only: PASS · repeats 44/44
+- INTNED-far-converter-to-gb: NOT_IMPLEMENTED · repeats 0/0
 
 ## Disease watch (from this cycle's sentinels, no extra run)
 
 - GG2050-PAIR-20260907T141211Z-W: **D-01 not observed** across 7 cases
+  - control-11386-harbour-farm: OK_ENGINE_MEASURED
+  - 13429-ossian-derived: OK_ENGINE_MEASURED
+  - 13432-marram-unmapped: OK_NO_COORDINATE
+  - INTNED-britned-midpoint-anchor: OK_INTERCONNECTOR_LANE
+  - INTNED-britned-gb-converter-anchor: OK_INTERCONNECTOR_LANE
+  - INTVKL-viking-gb-only: OK_INTERCONNECTOR_LANE
+  - INTNED-far-converter-to-gb: NOT_APPLICABLE
+  - D-02 (interconnectors, one direction only): NOT_IMPLEMENTED case present and recorded, as expected
+  - D-10 (silent blank): no blank receipt this cycle
+- GG2050-PAIR-20260907T190239Z-W: **D-01 not observed** across 7 cases
   - control-11386-harbour-farm: OK_ENGINE_MEASURED
   - 13429-ossian-derived: OK_ENGINE_MEASURED
   - 13432-marram-unmapped: OK_NO_COORDINATE
@@ -38,17 +56,16 @@ A disease closes only on evidence. States beginning OK_ are legitimate outcomes,
 
 | cycle CPU avg | floor | CPUs | free RAM | D:\gridatlas-ci | SSD ceiling | testcode pairs | ceiling |
 |---|---|---|---|---|---|---|---|
-| 45.3% | 20% | 20 | 3.86 GB | 0.13 GB | 900 GB | 60 MB | 300 MB |
+| 66% | 20% | 20 | 6.06 GB | 0.14 GB | 900 GB | 60 MB | 300 MB |
 
-Memory governor: floor 3 GB, reserve 4 GB, measured cost 0.43 GB per copy, cap 3 of 3, floor hits 0, least free seen 3.14 GB.
+Memory governor: floor 3 GB, reserve 4 GB, measured cost 0.41 GB per copy, cap 3 of 3, floor hits 0, least free seen 3.14 GB.
 
 ## Memory governor
 
-Floor 3 GB, reserve 4 GB, measured cost 0.43 GB per copy, cap 3 of 3, floor hits 0, least free seen 3.14 GB.
+Floor 3 GB, reserve 4 GB, measured cost 0.41 GB per copy, cap 3 of 3, floor hits 0, least free seen 3.14 GB.
 
 ## Adjustments made by the runner
 
-- 2026-09-07T17:30:24.527Z 20260907T141211Z-W: free RAM 4.6 GB against a 3 GB floor, repeats held this cycle
 - 2026-09-07T17:30:50.447Z 20260907T141211Z-W: free RAM 4.5 GB against a 3 GB floor, repeats held this cycle
 - 2026-09-07T17:31:16.166Z 20260907T141211Z-W: free RAM 4.5 GB against a 3 GB floor, repeats held this cycle
 - 2026-09-07T17:45:14.707Z 20260907T141211Z-W: free RAM 3.5 GB against a 3 GB floor, repeats held this cycle
@@ -60,6 +77,7 @@ Floor 3 GB, reserve 4 GB, measured cost 0.43 GB per copy, cap 3 of 3, floor hits
 - 2026-09-07T19:00:15.314Z 20260907T141211Z-W: free RAM 4.3 GB against a 3 GB floor, repeats held this cycle
 - 2026-09-07T19:00:40.834Z 20260907T141211Z-W: free RAM 4.5 GB against a 3 GB floor, repeats held this cycle
 - 2026-09-07T19:01:05.683Z 20260907T141211Z-W: free RAM 4.6 GB against a 3 GB floor, repeats held this cycle
+- 2026-09-07T19:14:20.347Z 20260907T141211Z-W: free RAM 3.6 GB against a 3 GB floor, repeats held this cycle
 
 
 ## Awaiting the owner
