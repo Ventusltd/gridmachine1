@@ -1,0 +1,85 @@
+{
+ "lane": "windows-rig",
+ "started_utc": "2026-09-07T14:29:25.641Z",
+ "cycles": 1,
+ "pairs": {
+  "20260907T141211Z-W": {
+   "pair_id": "GG2050-PAIR-20260907T141211Z-W",
+   "branch": "worker/windows-rig/pair-20260907T141211Z-W",
+   "proof_route": "offline (D:, network cut)",
+   "offline": {
+    "outcome": "PASS",
+    "run_utc": "2026-09-07T14:29:27.098Z",
+    "statement": "5 of 5 scored cases passed with a valid control; 1 direction NOT_IMPLEMENTED.",
+    "elapsed_ms": 18781,
+    "cases": {
+     "control-11386-harbour-farm": "PASS",
+     "13429-ossian-derived": "PASS",
+     "13432-marram-unmapped": "PASS",
+     "INTNED-britned-midpoint-anchor": "PASS",
+     "INTNED-britned-gb-converter-anchor": "PASS",
+     "INTVKL-viking-gb-only": "PASS",
+     "INTNED-far-converter-to-gb": "NOT_IMPLEMENTED"
+    }
+   },
+   "hosted": {
+    "fetched_utc": "2026-09-07T14:29:45.679Z",
+    "runs": [
+     {
+      "sha": "8c88aae",
+      "status": "in_progress",
+      "conclusion": null,
+      "url": "https://github.com/Ventusltd/testcode/actions/runs/34133209228",
+      "created": "2026-09-07T14:29:13Z"
+     },
+     {
+      "sha": "e196a86",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Ventusltd/testcode/actions/runs/34132699612",
+      "created": "2026-09-07T14:23:36Z"
+     },
+     {
+      "sha": "e2f43df",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Ventusltd/testcode/actions/runs/34132561384",
+      "created": "2026-09-07T14:22:04Z"
+     },
+     {
+      "sha": "b0a6fe5",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Ventusltd/testcode/actions/runs/34132439820",
+      "created": "2026-09-07T14:20:43Z"
+     }
+    ]
+   },
+   "repeats": {
+    "runs": 8,
+    "pass": 0,
+    "fail": 0,
+    "harness_invalid": 8,
+    "cases": {},
+    "elapsed_ms": []
+   },
+   "parallel": 1
+  }
+ },
+ "resources": {
+  "cycle_cpu_avg": 72.5,
+  "cpu_floor_pct": 20,
+  "cpus": 20,
+  "free_ram_gb": 8.23,
+  "d_gridatlas_ci_gb": 0.13,
+  "ssd_ceiling_gb": 900,
+  "testcode_pairs_mb": 30,
+  "testcode_ceiling_mb": 300,
+  "cycle_ms": 105884
+ },
+ "adjustments": [
+  "2026-09-07T14:30:24.376Z 20260907T141211Z-W: repeat failures under load, parallel -> 3",
+  "2026-09-07T14:31:08.044Z 20260907T141211Z-W: repeat failures under load, parallel -> 1"
+ ],
+ "updated_utc": "2026-09-07T14:31:11.749Z"
+}
