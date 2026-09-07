@@ -47,6 +47,10 @@ A scripted pass on the phone. Less is needed now that the target is Android, but
 1. Open the same project on the **tested** version and on root, and say whether the layers control fires on each. That single comparison decides GG-027 and tells us whether root promotion would close it.
 2. Do the same for print, and capture **one URL where print does not launch**, beside the one where it does. GG-028 cannot move without that pair.
 
+## Harness rule, added 2026-09-07
+
+**Every case runs portrait and landscape, phone and desktop, in the same run.** Landscape on a phone is currently a black screen and no harness has ever looked at it. Testing orientations separately, or not at all, is how a whole class of fault stays invisible.
+
 ## Gates
 
 - No fix begins on an intermittent ticket until GG-001 produces a rate, or until the owner's phone comparison settles it.

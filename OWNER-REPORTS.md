@@ -27,6 +27,8 @@ Every item reported on 2026-09-07, with the ticket it became. All were reported 
 | 18c | The spiders role: nervous system, backup to the engine, neural links to the amnesia repository, home of the maths and logic capsules; and rename the Spider printer label to Elements | [SPIDERS.md](SPIDERS.md), GG-040 | Recorded as architecture with one label ticket. The graph has already found a duplicate geodesy implementation, structurally, before anyone measured a span |
 | 19 | A well-working onshore solar arrival, but the layers control is dead and so is Scope from its dropdown. **Layers is the main priority: it worked before.** | GG-027, GG-037 | GG-027 raised to first priority and reclassified as a **regression**, on the owner's statement that it previously worked |
 | 19b | Remove Save image from the File menu. A reader can screenshot | GG-041 | Open, new. Print stays, image save goes |
+| 20 | Mobile in landscape is a black screen | GG-042 | Open, new. An orientation nobody tested, which is an amateur slip and is fixed by testing both orientations in the same run |
+| 20b | Remove the tab of older versions from the page. Focus on cinematic full-screen displays | GG-043 | Open, new |
 
 ## GG-036 · Print layout
 
@@ -136,3 +138,25 @@ The owner's statement changes its class: **it worked before.** So this is not a 
 That makes it the same investigation as the missing size slider: a control present in an earlier lineage and absent or broken in the served one. Both are answered by the same runner sweep, and both are instances of GG-039, the missing key between lineages.
 
 Two facts already held that narrow it. The layer panel has a history of phone-specific faults, including one where hiding layers collapsed the element containing the map. And every report tonight is against the root composition, which loads a different set of cartridges from the tested one. So the first measurement is cheap: **the same project on the tested version and on root, layers pressed on each.**
+
+## GG-042 · Landscape on a phone is a black screen
+
+| field | value |
+| --- | --- |
+| **Report** | Turning the phone to landscape gives a black screen |
+| **URL** | https://globalgrid2050.com/uk_renewables_pipeline/202609071221/?technology=bess&status=Operational |
+| **Solved** | No |
+| **How** | Nothing in this estate has ever been tested in landscape, so this is an untested orientation rather than a subtle fault, and the owner is right to call it what it is. It also has a precedent worth checking first: a previous fault where collapsing the layers panel collapsed the element that contains the map, blanking the application. A height that resolves to zero in one orientation produces exactly this symptom. **The fix in the harness is the real fix:** every case runs portrait and landscape, phone and desktop, in the same run, so an orientation cannot go untested again. That is cheap, and it retires a whole class rather than one instance |
+
+## GG-043 · Remove the older-version links
+
+| field | value |
+| --- | --- |
+| **Report** | The page carries links to V5, V4, V3, V2 and V1 legacy. They are not needed |
+| **URL** | https://globalgrid2050.com/uk_renewables_pipeline/202609071221/ |
+| **Solved** | No |
+| **How** | Remove the version list from the reader's page. The versions themselves stay published and immutable, because that is what makes a capsule recoverable and a report reproducible; what goes is the invitation to wander into them. There is a real tension with GG-039 and it is resolved this way: **a version is addressed by its key, not browsed by a menu.** A reader gets the current pair; a test or a report names an exact pair. Removing the menu costs nothing and removes one more way for someone to end up reporting a bug against a build nobody is serving, which is what happened all night |
+
+## The direction behind items 19 and 20
+
+The owner's framing, recorded because it decides trade-offs later: the display is cinematic and full screen, and the point is to make people love grid engineering. That is not decoration. Every choice tonight that removed something (the image save, the version menu, the card covering the map) removed a thing standing between a reader and the engine firing. When a future change offers more controls or a cleaner arrival, the arrival wins.

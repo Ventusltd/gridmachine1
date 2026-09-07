@@ -78,6 +78,9 @@ Tickets are numbered once and never reused. Where a ticket already had a code in
 
 | **GG-041** | Save image in the File menu is unnecessary; a reader can screenshot | https://ventusltd.github.io/gridatlas/atlas/?repd_ref=6502&technology=solar&latitude=51.338767&longitude=0.913885&zoom=12 | **No** | Remove the control and its handler. Print stays, because a printed sheet carries the data credit and the composition stamp that a screenshot does not. Deleting the image path also removes the export half that lost its attribution today, closing part of GG-005 by deletion rather than repair. |
 
+| **GG-042** | Mobile in landscape is a black screen | https://globalgrid2050.com/uk_renewables_pipeline/202609071221/?technology=bess&status=Operational | **No** | An untested orientation. Precedent to check first: a previous fault where collapsing the layers panel collapsed the element containing the map. A height resolving to zero in one orientation gives exactly this. The real fix is in the harness: every case runs portrait and landscape, phone and desktop, in one run. |
+| **GG-043** | The page carries links to five older versions | https://globalgrid2050.com/uk_renewables_pipeline/202609071221/ | **No** | Remove the menu; keep the versions published and immutable. A version is addressed by its key, not browsed. Removes one more way to report a bug against a build nobody serves. |
+
 ### Composition note, and it changes how every report above should be read
 
 Every owner report so far has been made against the **root** Atlas, which serves generation `202609060259`. Read from the live file, root loads: streaming-parquet-bridge v9.112, uk-gazetteer-flyto v9.112, sld-sandbox **v9.135**, substation-intelligence **v9.139**.
