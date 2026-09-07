@@ -1,7 +1,7 @@
 {
  "lane": "windows-rig",
  "started_utc": "2026-09-07T16:22:12.745Z",
- "cycles": 23,
+ "cycles": 24,
  "pairs": {
   "20260907T141211Z-W": {
    "pair_id": "GG2050-PAIR-20260907T141211Z-W",
@@ -9,9 +9,9 @@
    "proof_route": "offline (D:, network cut)",
    "offline": {
     "outcome": "INCOMPLETE",
-    "run_utc": "2026-09-07T18:57:33.297Z",
+    "run_utc": "2026-09-07T18:59:52.085Z",
     "statement": "5 of 5 scored cases passed with a valid control; 1 requested behaviour(s) NOT_IMPLEMENTED, so the run is INCOMPLETE.",
-    "elapsed_ms": 18211,
+    "elapsed_ms": 23214,
     "cases": {
      "control-11386-harbour-farm": "PASS",
      "13429-ossian-derived": "PASS",
@@ -23,12 +23,19 @@
     }
    },
    "hosted": {
-    "fetched_utc": "2026-09-07T18:57:51.777Z",
+    "fetched_utc": "2026-09-07T19:00:15.311Z",
     "runs": [
      {
-      "sha": "bb91bae",
+      "sha": "6fccef2",
       "status": "in_progress",
       "conclusion": null,
+      "url": "https://github.com/Ventusltd/testcode/actions/runs/34153842718",
+      "created": "2026-09-07T18:59:47Z"
+     },
+     {
+      "sha": "bb91bae",
+      "status": "completed",
+      "conclusion": "success",
       "url": "https://github.com/Ventusltd/testcode/actions/runs/34153699309",
       "created": "2026-09-07T18:57:29Z"
      },
@@ -87,13 +94,6 @@
       "conclusion": "success",
       "url": "https://github.com/Ventusltd/testcode/actions/runs/34149731959",
       "created": "2026-09-07T17:58:03Z"
-     },
-     {
-      "sha": "340c219",
-      "status": "completed",
-      "conclusion": "success",
-      "url": "https://github.com/Ventusltd/testcode/actions/runs/34148893276",
-      "created": "2026-09-07T17:45:19Z"
      }
     ]
    },
@@ -198,15 +198,15 @@
   }
  },
  "resources": {
-  "cycle_cpu_avg": 48.7,
+  "cycle_cpu_avg": 69.8,
   "cpu_floor_pct": 20,
   "cpus": 20,
-  "free_ram_gb": 3.08,
+  "free_ram_gb": 4.47,
   "d_gridatlas_ci_gb": 0.13,
   "ssd_ceiling_gb": 900,
   "testcode_pairs_mb": 30,
   "testcode_ceiling_mb": 300,
-  "cycle_ms": 133776
+  "cycle_ms": 27021
  },
  "adjustments": [
   "2026-09-07T16:29:47.092Z 20260907T141211Z-W: free RAM 3.4 GB against a 3 GB floor, repeats held this cycle",
@@ -221,7 +221,8 @@
   "2026-09-07T18:15:06.395Z 20260907T141211Z-W: free RAM 4.2 GB against a 3 GB floor, repeats held this cycle",
   "2026-09-07T18:30:18.636Z 20260907T141211Z-W: free RAM 4.2 GB against a 3 GB floor, repeats held this cycle",
   "2026-09-07T18:45:09.646Z 20260907T141211Z-W: free RAM 4.2 GB against a 3 GB floor, repeats held this cycle",
-  "2026-09-07T18:59:43.470Z 20260907T141211Z-W: free RAM 3.1 GB against a 3 GB floor, repeats held this cycle"
+  "2026-09-07T18:59:43.470Z 20260907T141211Z-W: free RAM 3.1 GB against a 3 GB floor, repeats held this cycle",
+  "2026-09-07T19:00:15.314Z 20260907T141211Z-W: free RAM 4.3 GB against a 3 GB floor, repeats held this cycle"
  ],
  "governor": {
   "ram_floor_gb": 3,
@@ -232,5 +233,5 @@
   "floor_hits": 0,
   "min_free_seen_gb": 3.14
  },
- "updated_utc": "2026-09-07T18:59:46.198Z"
+ "updated_utc": "2026-09-07T19:00:17.635Z"
 }
