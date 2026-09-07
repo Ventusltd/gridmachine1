@@ -21,6 +21,7 @@ Every item reported on 2026-09-07, with the ticket it became. All were reported 
 | 14b | Verify whether the voltage layers were generated | [provenance](reports/20260907T230000Z-engine-capsule/DATA-PROVENANCE.md) | Verified: OpenStreetMap, not generated. A mapper's own note about digging scars on satellite imagery settles it |
 | 15 | Print should be centred on the page with a scaling control; the attribution is good | GG-036 | Open, new |
 | 16 | The Scope control has no function. It should fire like the onshore grid engine at any chosen point | GG-037 | Open, new. **Confirmed in the code:** the computation, the drawing and the arming function all exist, and nothing calls the arming function |
+| 17 | An offshore project that **does** fire, and Scope still dead. Scope should be its own cartridge, built like the poly tool, dispatching by class: onshore to the substation finder, offshore to the new offshore rule, interconnector to the interconnector rule | GG-034, GG-037 | Evidence added to both. The offshore observation changes the diagnosis and is written up below |
 
 ## GG-036 · Print layout
 
@@ -50,3 +51,24 @@ Every item reported on 2026-09-07, with the ticket it became. All were reported 
 ### What Scope should do when it is wired
 
 Fire the substation finder at the clicked point, with the same discipline the working engine already has: state the radius used, state how many assets were invisible to the search, name the nearest and the nearest named if they differ, and refuse rather than guess where the separation is too small for the geometry to mean anything. It is the same engine answering the same question at a different origin, which is why it is cheap and why it should not be allowed to drift into a second implementation.
+
+
+## Item 17 · What the floating wind example proves
+
+A floating wind demonstrator off the north coast fires perfectly: five lines drawn, the nearest three labelled 15.40 km at 275 kV, 20.73 km at 275 kV and 22.55 km at 132 kV.
+
+**This changes the offshore diagnosis and makes it sharper.** Offshore is not broken as a class. The engine works offshore whenever mapped substations lie inside its budget, and this project sits close enough to shore that they do. The projects that fail are the far ones, and they fail for the reason the geometry demands: there is nothing within the budget, because their connection is a hundred kilometres of export cable, not a short hop to whatever is nearest.
+
+**It also bounds the search budget by measurement rather than by reading constants.** A drawn link at 22.55 km proves the budget is at least that. A large offshore project tens of kilometres further out draws nothing, so the budget is smaller than that distance. The exact number is still to be read from the source, but the behaviour is now bracketed by evidence.
+
+**And it confirms the fix is not a wider radius.** Widening the budget until Hornsea reaches something would return the nearest coastal substation, which is not where that project connects. The answer is the declared onshore connection point, which is GG-034 as written. This example is now the control case for that engine: whatever is built must leave this project's five lines exactly as they are.
+
+## Item 17 · Scope as its own cartridge
+
+The owner's design, and it unifies two things I had been treating separately.
+
+**Scope becomes its own cartridge**, built the way the poly zone tool is built, so it owns its arming, its drawing and its state rather than being a menu entry hoping something else answers.
+
+**Scope is the cable-engine router with no project attached.** At any point the reader chooses, it asks which cable question applies there and fires that engine: onshore, find the substations to snap to; offshore, use the offshore rule; interconnector, fire the interconnector rule. That is exactly the routing the pipeline will declare per row, applied to a bare coordinate instead of a register entry.
+
+Two consequences worth stating. First, this makes Scope the **cheapest possible test of the router**, because it exercises the dispatch without needing a project, a link or a table row. Second, it means Scope must not grow its own copy of the measurement: it is the same engines answering at a different origin, and a second implementation would drift from the first within a version or two.
