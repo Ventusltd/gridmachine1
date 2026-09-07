@@ -1,0 +1,47 @@
+{
+ "schema": "gg2050.runner-capsule.v1",
+ "sealed_utc": "2026-09-07T23:01:12.612Z",
+ "root": "D:/gridatlas-ci",
+ "parts": [
+  {
+   "name": "overnight.mjs",
+   "sha256": "e1e35dca659f5102f11ab36ac6c7c30270b9d9803d4733d356ed199e684913b3",
+   "bytes": 10853
+  },
+  {
+   "name": "smoke.mjs",
+   "sha256": "f16fcbf394443f44644db58524637046a0dd070130176d87f3f5a1c73587fd9d",
+   "bytes": 4241
+  },
+  {
+   "name": "pair-runner.mjs",
+   "sha256": "641080848f4171bc081df359a92186348a5a1a359f1b1e54fb7650bff21bc0d1",
+   "bytes": 21962
+  }
+ ],
+ "measured": {
+  "idle_cpu_pct": [
+   3,
+   6
+  ],
+  "one_session_cpu_pct": 51.6,
+  "two_sessions_cpu_pct": 84.8,
+  "one_session_with_flags_cpu_pct": 50.6,
+  "browser_copy_ram_gb": 0.41,
+  "cores": 20
+ },
+ "shapes": [
+  "Pixel 7",
+  "Pixel 7 landscape",
+  "Galaxy S9+",
+  "Galaxy S9+ landscape",
+  "desktop 1440x900"
+ ],
+ "real_device": {
+  "adb": "D:/android/platform-tools",
+  "emulator_required": false
+ },
+ "driver": {
+  "playwright": "1.58.2"
+ }
+}
