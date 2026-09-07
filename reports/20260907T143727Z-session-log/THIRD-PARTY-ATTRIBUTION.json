@@ -1,0 +1,68 @@
+{
+ "schema": "gg2050.third-party-attribution.v1",
+ "snapshot_utc": "2026-09-07T14:40:16.172Z",
+ "note": "No new package was installed for this work.",
+ "runtime": [
+  {
+   "name": "Node.js",
+   "version": "v24.19.0"
+  },
+  {
+   "name": "Playwright",
+   "version": "1.58.2",
+   "source": "existing LocalCI install, resolved via PAIR_PLAYWRIGHT then node_modules"
+  },
+  {
+   "name": "Chromium",
+   "version": "145.0.7632.6",
+   "via": "Playwright"
+  },
+  {
+   "name": "Python",
+   "version": "3.12.10",
+   "use": "stdlib sqlite3 only"
+  }
+ ],
+ "browser_dependencies": [
+  {
+   "name": "MapLibre GL",
+   "version": "3.6.2"
+  },
+  {
+   "name": "DuckDB-WASM",
+   "version": "1.29.0"
+  },
+  {
+   "name": "Apache Arrow",
+   "version": "17.0.0"
+  },
+  {
+   "name": "flatbuffers",
+   "version": "24.3.25"
+  },
+  {
+   "name": "tslib",
+   "version": "2.6.3"
+  },
+  {
+   "name": "CARTO basemap tiles"
+  },
+  {
+   "name": "Esri"
+  }
+ ],
+ "data": [
+  {
+   "name": "REPD register parquet",
+   "sha256": "174040c37f3d63742d6fdd7af722a8cfdf3fb53de3ff85ff1142d22fdac4866b"
+  },
+  {
+   "name": "interconnector_cables.csv",
+   "sha256": "0ea612d869624e23cd97e391c47e790f2488e6c0d14233d234b19d3324bfa36d"
+  },
+  {
+   "name": "gb-transmission-network.v1.json",
+   "pin": "data-grid-gb 1c9909d1138704b29235c27fd769436dda8a0b18"
+  }
+ ]
+}

@@ -1,0 +1,28 @@
+2026-09-07T14:21:09.498Z  20260907T141211Z-W: running on worker/windows-rig/pair-20260907T141211Z-W fingerprint 8f25f66acc0b
+2026-09-07T14:22:00.828Z  20260907T141211Z-W: exit 0
+  PASS             control-11386-harbour-farm  identity RESOLVED/true  
+  PASS             13429-ossian-derived  identity RESOLVED/true  
+  PASS             13432-marram-unmapped  identity RESOLVED_UNMAPPED/false  
+  PASS             INTNED-britned-midpoint-anchor  identity ABSENT/false ic RESOLVED card OPEN gb Grain Static Inverter Plant 0 km 
+  PASS             INTNED-britned-gb-converter-anchor  identity ABSENT/false ic RESOLVED card OPEN gb Grain Static Inverter Plant 0 km 
+  PASS             INTVKL-viking-gb-only  identity ABSENT/false ic NOT_DRAWABLE card OPEN gb Bicker Fen Substation 0.001 km 
+  NOT_IMPLEMENTED  INTNED-far-converter-to-gb    
+  hrefs into pair: {"11386":true,"13429":true,"13432":true,"IC-INTNED":true,"IC-INTVKL":true}  misses 20
+2026-09-07T14:22:00.970Z  20260907T141211Z-W: relational exit 0 ': 102, 'pair_components': 100, 'dependency_edges': 20, 'test_definitions': 1, 'test_runs': 1, 'run_inputs': 8, 'test_cases': 7, 'observations': 1, 'reports': 0, 'approval_events': 0, 'quarantine': 1}
+2026-09-07T14:22:03.198Z  20260907T141211Z-W: push ok e2f43df
+2026-09-07T14:29:25.642Z  runner v2 start window 720 min, cycle 15 min, cpus 20, free RAM 5.2 GB
+2026-09-07T14:29:25.930Z  20260907T141211Z-W: offline run (fingerprint changed 388cdcbfdd08) parallel 5
+2026-09-07T14:29:45.059Z  20260907T141211Z-W: offline PASS exit 0
+2026-09-07T14:30:24.086Z  20260907T141211Z-W: repeat batch 1 x4 copies, cpu 91%, cumulative 0/4 PASS
+2026-09-07T14:31:07.751Z  20260907T141211Z-W: repeat batch 2 x4 copies, cpu 78%, cumulative 0/8 PASS
+2026-09-07T14:31:10.389Z  20260907T141211Z-W: push ok 0f386ec
+2026-09-07T14:31:14.275Z  analysis: gridmachine1 push ok
+2026-09-07T14:31:14.282Z  cycle 1 done, sleeping 792 s
+2026-09-07T14:32:16.067Z  runner v2 start window 690 min, cycle 15 min, cpus 20, free RAM 8.0 GB
+2026-09-07T14:32:16.164Z  20260907T141211Z-W: offline run (fingerprint changed 3db30b4ec6ef) parallel 5
+2026-09-07T14:32:35.437Z  20260907T141211Z-W: offline PASS exit 0
+2026-09-07T14:33:14.121Z  20260907T141211Z-W: repeat batch 1 x2 copies, cpu 64%, cumulative 2/2 PASS
+2026-09-07T14:34:03.814Z  20260907T141211Z-W: repeat batch 2 x2 copies, cpu 90%, cumulative 4/4 PASS
+2026-09-07T14:34:05.909Z  20260907T141211Z-W: push ok 97e3e46
+2026-09-07T14:34:07.869Z  analysis: gridmachine1 push ok
+2026-09-07T14:34:07.874Z  cycle 1 done, sleeping 788 s

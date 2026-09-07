@@ -1,0 +1,83 @@
+{
+ "schema": "gg2050.export-manifest.v1",
+ "snapshot_utc": "2026-09-07T14:40:16.172Z",
+ "note": "sha256 of committed git blobs, not working copies: a Windows checkout converts LF and changes the hash",
+ "files": [
+  {
+   "repository": "testcode",
+   "path": "sandbox/pairs/20260907T141211Z-W/pair.json",
+   "sha256": "83200db42b9ad58bcb774140964a90c68e9601d74a0b91b838a584f2dabb3f3b"
+  },
+  {
+   "repository": "testcode",
+   "path": "sandbox/pairs/20260907T141211Z-W/tests/run-pair.mjs",
+   "sha256": "b4fef79ff3f81c6efe85c24b53d0193e73c4c2baac3ad8c6b0b3099801613b88"
+  },
+  {
+   "repository": "testcode",
+   "path": "sandbox/pairs/20260907T141211Z-W/tests/range.mjs",
+   "sha256": "10ba9f92403e6473a36aac6f951dde154d5d3186a90d779a7e76feff30db8a45"
+  },
+  {
+   "repository": "testcode",
+   "path": "sandbox/pairs/20260907T141211Z-W/relational/build.py",
+   "sha256": "6afb8199e0509d18991001f959a113e182440b264bd990dc3a1026a86321bb37"
+  },
+  {
+   "repository": "testcode",
+   "path": "sandbox/pairs/20260907T141211Z-W/relational/impact-query.sql",
+   "sha256": "4632d5b31f6bf4a4547ce9840cda0e543e8a79ab1a19708098e1ffabc345687c"
+  },
+  {
+   "repository": "testcode",
+   "path": "sandbox/pairs/20260907T141211Z-W/relational/IMPACT.md",
+   "sha256": "e1f6e9bcd217475a7f5a2f850fcbbf03c9943d2f534337ffb100db4191c43aef"
+  },
+  {
+   "repository": "testcode",
+   "path": "sandbox/pairs/20260907T141211Z-W/relational/export.json",
+   "sha256": "606027ce35ac870e8887a0fbf73ec4d97b0002b3d538994bfb75bd2c1e69f947"
+  },
+  {
+   "repository": "testcode",
+   "path": "sandbox/pairs/20260907T141211Z-W/evidence/receipt-windows-rig.json",
+   "sha256": "890997ef914cc490df6074fc9c9dc73dfb1eb1419397d3c79b1f3e81bbf57d80"
+  },
+  {
+   "repository": "testcode",
+   "path": "sandbox/pairs/20260907T141211Z-W/evidence/hosted-runs.json",
+   "sha256": "20252f8cfd34529d63688f005b9715c9b307a1a7ec695d71f4518924a23419cb"
+  },
+  {
+   "repository": "testcode",
+   "path": "sandbox/pairs/20260907T141211Z-W/evidence/repeat-stats.json",
+   "sha256": "fa81e87d36cd94e77306c20565838f9863337faf1b7400586e242aa516d69864"
+  },
+  {
+   "repository": "testcode",
+   "path": ".github/workflows/pair-runner.yml",
+   "sha256": "5212f79297482b0be3c66c5c3abfbfc9ad39b9218ed42332bea873d909def5ce"
+  },
+  {
+   "repository": "gridmachine1",
+   "path": "202609071430-pair-20260907T141211Z-W/README.md",
+   "sha256": "0880118274b1f854019c9133a2a65ce8e087c5c624df25c9fe1cb7ce6d39c6dd"
+  },
+  {
+   "repository": "gridmachine1",
+   "path": "analysis/cd-plan.md",
+   "sha256": "cb1b51c1f7f9058768226c4130d3161fd4642921ebcc2f236e3d13812ca68dea"
+  },
+  {
+   "repository": "gridmachine1",
+   "path": "analysis/runner-status.json",
+   "sha256": "2dc8d63b4703b2ca35db29e6bff1229f65b1e66449789b72caaf245a01aa8aa1"
+  },
+  {
+   "repository": "local (not a repository)",
+   "path": "D:/gridatlas-ci/pair-runner.mjs",
+   "sha256": "c9caa2dd71cc0cd739bee93c5d0e6116c5854bfec103fe38a4adc98300508267",
+   "note": "the runner lives on the SSD; a copy travels with this report as pair-runner.mjs.txt"
+  }
+ ]
+}

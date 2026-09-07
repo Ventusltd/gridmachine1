@@ -1,0 +1,133 @@
+{
+ "schema": "gg2050.session-resume.v1",
+ "snapshot_utc": "2026-09-07T14:40:16.172Z",
+ "lane": "windows-rig",
+ "namespace": "W",
+ "machine": {
+  "host_os": "Windows 11",
+  "cpus": 20,
+  "cpu_floor_pct": 20,
+  "ram_note": "5-8 GB free; Chromium copies are RAM bound at about 1.2 GB each",
+  "ssd": "D:\\gridatlas-ci",
+  "ssd_ceiling_gb": 900,
+  "testcode_live_test_ceiling_mb": 300
+ },
+ "repositories": {
+  "testcode": {
+   "remote": "https://github.com/Ventusltd/testcode",
+   "clone": "C:/Users/vikra/testcode-clone",
+   "branch": "worker/windows-rig/pair-20260907T141211Z-W",
+   "head": "97e3e461890e99339fd8efa6250a8b9cc98cd667",
+   "main_base": "d66ac93905c4cbeb5526ac840d650e7dd876e25f",
+   "rule": "branch only; never main; never force-push"
+  },
+  "gridmachine1": {
+   "remote": "https://github.com/Ventusltd/gridmachine1",
+   "clone": "C:/Users/vikra/gridmachine1",
+   "head": "a7c5015b53e9001f5288275fa8d211c517a2667b",
+   "role": "my evidence and analysis"
+  },
+  "gridatlas": {
+   "clone": "C:/Users/vikra/gapub",
+   "head": "380c7ea8ceab49ee86593eafc2d8666a425779de",
+   "lane_version": "atlas/v/202609071232 (v9.146)",
+   "root_generation": "202609060259 (unpromoted)"
+  },
+  "globalgrid2050": {
+   "clone": "C:/Users/vikra/OneDrive/Documents/GitHub/globalgrid2050",
+   "head": "28e41f129d80ebd1a8514b6e2c355e24ec36451b",
+   "release": "uk_renewables_pipeline/202609071221"
+  }
+ },
+ "pair": {
+  "id": "GG2050-PAIR-20260907T141211Z-W",
+  "dir": "sandbox/pairs/20260907T141211Z-W",
+  "experiment": "EXP-PN202609071221-ATLAS202609071232-v1",
+  "states": {
+   "source_present": "PRESENT",
+   "test_verdict": "PASS",
+   "publication": "BRANCH_ONLY",
+   "owner_approval": "NOT_REQUESTED",
+   "last_receipt": "evidence/run-2026-09-07T14-21-10-632Z.json",
+   "last_run_utc": "2026-09-07T14:32:17.193Z",
+   "runner": "D: pair-runner lane 4",
+   "proof_route": "offline (D:, network cut)",
+   "repeat_pass_rate": "4/4"
+  },
+  "known_faults_carried": [
+   "interconnector module and Pipeline News builder use R = 6371.0088 km against the estate's R_ATLAS = 6378.137 (spans low by 0.11%; BritNed 234.90 vs 235.16 km); to be fixed in a child pair, not patched here",
+   "substation-intelligence v9.140 (451,935 bytes) crosses the gridatlas proof gate's 368,640-byte boundary; carried unchanged",
+   "no far-converter (B→A) arrival exists in v9.146; recorded as NOT_IMPLEMENTED in the test receipts"
+  ]
+ },
+ "runners": [
+  {
+   "name": "overnight worker",
+   "cmd": "node D:\\gridatlas-ci\\worker.mjs",
+   "pid_at_snapshot": 1620,
+   "started_utc": "2026-09-07T09:29Z",
+   "window_min": 360,
+   "window_ends_utc": "2026-09-07T15:29Z",
+   "lanes": "offline / live / twins (read-only, never re-run)"
+  },
+  {
+   "name": "pair runner lane 4",
+   "cmd": "node D:\\gridatlas-ci\\pair-runner.mjs",
+   "pid_at_snapshot": 37424,
+   "started_utc": "2026-09-07T14:32Z",
+   "window_min": 690,
+   "window_ends_utc": "2026-09-08T02:02Z",
+   "cycle_min": 15,
+   "relaunch": "Start-Process node D:\\gridatlas-ci\\pair-runner.mjs -WorkingDirectory D:\\gridatlas-ci -WindowStyle Hidden -RedirectStandardOutput D:\\gridatlas-ci\\pair-runner.stdout.log -RedirectStandardError D:\\gridatlas-ci\\pair-runner.stderr.log, with CI_WINDOW_MIN set to the remaining minutes only"
+  }
+ ],
+ "hosted_runner": {
+  "workflow": "testcode/.github/workflows/pair-runner.yml",
+  "trigger": "push to worker/**",
+  "mode": "PAIR_NET=online",
+  "commits_green": [
+   "b0a6fe5",
+   "e2f43df",
+   "e196a86"
+  ],
+  "writes": "artifacts only, never commits"
+ },
+ "cadence": {
+  "check_every_min": 15,
+  "mechanism": "session cron, session-only, must be recreated in a new session"
+ },
+ "latest_verdicts": {
+  "cycle": 1,
+  "pairs": {
+   "GG2050-PAIR-20260907T141211Z-W": {
+    "proof_route": "offline (D:, network cut)",
+    "offline": "PASS",
+    "repeats": "4/4"
+   }
+  },
+  "resources": {
+   "cycle_cpu_avg": 70,
+   "cpu_floor_pct": 20,
+   "cpus": 20,
+   "free_ram_gb": 7.76,
+   "d_gridatlas_ci_gb": 0.13,
+   "ssd_ceiling_gb": 900,
+   "testcode_pairs_mb": 30,
+   "testcode_ceiling_mb": 300,
+   "cycle_ms": 109958
+  }
+ },
+ "prohibitions": [
+  "no promotion by any runner; promotion is the owner decision at the desk",
+  "never re-run the digital-twin harness or touch C:\\Users\\vikra\\LocalCI\\PipelineNews-GridAtlas\\digital-twins",
+  "never edit a published version; a new timestamped version always",
+  "no agent names in identifiers, directories or branches",
+  "testcode: branch only, no force-push, no writes to main"
+ ],
+ "next_work": [
+  "child pair fixing the earth radius to R_ATLAS 6378.137 and regenerating geojson, endpoints and the Pipeline News partition",
+  "repo-convention proof files for v9.145 and v9.146",
+  "far-end converters for the 8 links without a far coordinate",
+  "owner: root Atlas promotion; engine wording conflict on interconnector geometry"
+ ]
+}

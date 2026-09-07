@@ -1,0 +1,185 @@
+// Pair runner, lane 4 on D:. The runners do the heavy lifting; a person reads
+// one overwritten plan file. Every 15 minutes:
+//
+//   1. OFFLINE FIRST. Each candidate pair in the testcode clone is run with
+//      the network cut (offline mirror). PASS / FAIL there is the verdict.
+//      HARNESS_INVALID or no receipt = offline could not prove it, so the
+//      proof route moves to the testcode hosted runner (online), whose
+//      conclusion is fetched and recorded beside the offline receipt.
+//   2. HEAVY LIFTING. With the rest of the cycle, the harness is repeated in
+//      parallel copies sized to free RAM (never CPU alone: Chromium is RAM
+//      bound on this machine) until the CPU floor is met or the cycle budget
+//      ends. Repeats give a pass-rate, the only honest measure of "repeatable".
+//      Repeat outputs live on D:, not in testcode.
+//   3. CEILINGS. testcode live-test directory <= 300 MB (receipts overwritten
+//      in place, history is git's job); D: <= 900 GB.
+//   4. ANALYSIS. gridmachine1/analysis/cd-plan.md and runner-status.json are
+//      rewritten every cycle and committed only when they changed.
+//
+//   CI_WINDOW_MIN=720 node D:/gridatlas-ci/pair-runner.mjs
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { spawnSync, spawn } from "node:child_process";
+import { createHash } from "node:crypto";
+
+const CLONE = process.env.PAIR_CLONE || "C:/Users/vikra/testcode-clone";
+const PAIRS = path.join(CLONE, "sandbox", "pairs");
+const ROOT = "D:/gridatlas-ci";
+const GM1 = "C:/Users/vikra/gridmachine1";
+const REPEATS_DIR = path.join(ROOT, "runs", "pair-repeats");
+const LOG = path.join(ROOT, "pair-runner.log");
+const WINDOW_MIN = Number(process.env.CI_WINDOW_MIN || 720);
+const CYCLE_MIN = 15, CYCLE_BUDGET_MS = 12 * 60_000;
+const TESTCODE_CEILING_MB = 300, SSD_CEILING_GB = 900, CPU_FLOOR = 0.20, MAX_COPIES = 2, REPEAT_PARALLEL = 2, RAM_RESERVE_GB = 3;
+const LANE = "windows-rig";
+const log = (m) => { const l = `${new Date().toISOString()}  ${m}`; fs.appendFileSync(LOG, l + "\n"); console.log(l); };
+const sh = (cmd, args, cwd, timeoutMs = 20 * 60_000, env = {}) => spawnSync(cmd, args, { cwd, encoding: "utf8", timeout: timeoutMs, maxBuffer: 64 << 20, env: { ...process.env, ...env } });
+const git = (args, cwd = CLONE) => sh("git", args, cwd).stdout.trim();
+const mb = (b) => Math.round(b / 1048576);
+
+function dirBytes(dir, skip = () => false) {
+  let n = 0; if (!fs.existsSync(dir)) return 0;
+  for (const e of fs.readdirSync(dir, { withFileTypes: true })) { const p = path.join(dir, e.name); if (skip(p)) continue; n += e.isDirectory() ? dirBytes(p, skip) : fs.statSync(p).size; }
+  return n;
+}
+function fingerprint(dir) {
+  const h = createHash("sha256");
+  const walk = (d) => { for (const e of fs.readdirSync(d, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
+    const p = path.join(d, e.name); const rel = path.relative(dir, p).replace(/\\/g, "/");
+    if (rel.startsWith("evidence") || rel.startsWith("relational")) continue;
+    if (e.isDirectory()) walk(p); else { h.update(rel); h.update(fs.readFileSync(p)); } } };
+  walk(dir); return h.digest("hex");
+}
+const cpuSnap = () => os.cpus().map((c) => ({ idle: c.times.idle, total: Object.values(c.times).reduce((a, b) => a + b, 0) }));
+const cpuUse = (a, b) => { let idle = 0, total = 0; for (let i = 0; i < a.length; i++) { idle += b[i].idle - a[i].idle; total += b[i].total - a[i].total; } return total ? 1 - idle / total : 0; };
+const freeGB = () => os.freemem() / 1073741824;
+const copiesFor = () => Math.max(0, Math.min(MAX_COPIES, Math.floor((freeGB() - RAM_RESERVE_GB) / 1.2)));   // ~1.2 GB per copy at REPEAT_PARALLEL contexts
+
+async function hostedRuns(branch) {
+  try {
+    const r = await fetch(`https://api.github.com/repos/Ventusltd/testcode/actions/runs?branch=${encodeURIComponent(branch)}&per_page=10`, { signal: AbortSignal.timeout(20000) });
+    if (!r.ok) return { error: `api ${r.status}` };
+    const j = await r.json();
+    return { fetched_utc: new Date().toISOString(), runs: (j.workflow_runs || []).map((x) => ({ sha: x.head_sha.slice(0, 7), status: x.status, conclusion: x.conclusion, url: x.html_url, created: x.created_at })) };
+  } catch (e) { return { error: String(e).slice(0, 120) }; }
+}
+
+function runHarness(dir, env, timeoutMs = 25 * 60_000) {
+  return new Promise((resolve) => {
+    const p = spawn(process.execPath, ["tests/run-pair.mjs"], { cwd: dir, env: { ...process.env, ...env } });
+    let out = "", err = ""; p.stdout.on("data", (d) => (out += d)); p.stderr.on("data", (d) => (err += d));
+    const t = setTimeout(() => { try { p.kill("SIGKILL"); } catch {} }, timeoutMs);
+    p.on("close", (code) => { clearTimeout(t); resolve({ code, out, err }); });
+  });
+}
+
+const status = { lane: LANE, started_utc: new Date().toISOString(), cycles: 0, pairs: {}, resources: {}, adjustments: [] };
+
+async function cycle() {
+  const cycleStart = Date.now(); const cpu0 = cpuSnap();
+  status.cycles++;
+  for (const name of fs.existsSync(PAIRS) ? fs.readdirSync(PAIRS).sort() : []) {
+    const dir = path.join(PAIRS, name);
+    if (!fs.existsSync(path.join(dir, "tests", "run-pair.mjs"))) continue;
+    const pair = JSON.parse(fs.readFileSync(path.join(dir, "pair.json"), "utf8"));
+    const branch = `worker/${pair.implementation_lane}/pair-${name}`;
+    const ps = status.pairs[name] ||= { pair_id: pair.pair_id, branch, proof_route: null, offline: null, hosted: null, repeats: { runs: 0, pass: 0, fail: 0, harness_invalid: 0, cases: {}, elapsed_ms: [] }, parallel: 5 };
+    if (git(["branch", "--show-current"]) !== branch) { const r = sh("git", ["checkout", "-q", "-B", branch], CLONE); if (r.status !== 0) { log(`${name}: checkout failed`); continue; } }
+    const fp = fingerprint(dir); const fpFile = path.join(dir, "evidence", ".last-fingerprint");
+    const changed = !(fs.existsSync(fpFile) && fs.readFileSync(fpFile, "utf8").trim() === fp);
+    const receiptName = `receipt-${LANE}.json`;
+
+    // 1. offline first
+    if (changed || !ps.offline) {
+      log(`${name}: offline run (${changed ? "fingerprint changed " + fp.slice(0, 12) : "first cycle"}) parallel ${ps.parallel}`);
+      const r = await runHarness(dir, { PAIR_NET: "cut", PAIR_PARALLEL: String(ps.parallel), PAIR_RECEIPT: receiptName, PAIR_PORT: "8911" });
+      const rp = path.join(dir, "evidence", receiptName);
+      const rc = fs.existsSync(rp) ? JSON.parse(fs.readFileSync(rp, "utf8")) : null;
+      ps.offline = rc ? { outcome: rc.outcome, run_utc: rc.run_utc, statement: rc.statement, elapsed_ms: rc.elapsed_ms, cases: Object.fromEntries([rc.control, ...rc.cases].filter(Boolean).map((c) => [c.name, c.pass === undefined ? c.outcome : c.pass ? "PASS" : "FAIL"])) } : { outcome: "NO_RECEIPT", exit: r.code, err: (r.err || "").trim().slice(-200) };
+      log(`${name}: offline ${ps.offline.outcome} exit ${r.code}`);
+      const rel = sh("python", ["relational/build.py"], dir, 5 * 60_000); if (rel.status !== 0) log(`${name}: relational failed ${(rel.stderr || "").slice(-150)}`);
+      fs.mkdirSync(path.join(dir, "evidence"), { recursive: true }); fs.writeFileSync(fpFile, fp + "\n");
+    }
+    ps.proof_route = ["PASS", "FAIL"].includes(ps.offline.outcome) ? "offline (D:, network cut)" : "testcode hosted runner (offline could not prove it)";
+
+    // hosted conclusions, always recorded beside the offline receipt
+    ps.hosted = await hostedRuns(branch);
+    fs.writeFileSync(path.join(dir, "evidence", "hosted-runs.json"), JSON.stringify(ps.hosted, null, 1) + "\n");
+
+    // 2. heavy lifting: repeats until CPU floor met or budget spent; RAM-guarded
+    fs.mkdirSync(REPEATS_DIR, { recursive: true });
+    let batches = 0;
+    while (Date.now() - cycleStart < CYCLE_BUDGET_MS - 90_000) {
+      const k = copiesFor(); if (k === 0) { status.adjustments.push(`${new Date().toISOString()} ${name}: free RAM ${freeGB().toFixed(1)} GB, repeats paused`); break; }
+      const c0 = cpuSnap();
+      const rs = await Promise.all(Array.from({ length: k }, (_, i) => runHarness(dir, { PAIR_NET: "cut", PAIR_PARALLEL: String(REPEAT_PARALLEL), PAIR_EVIDENCE_DIR: path.join(REPEATS_DIR, `${name}-copy${i}`), PAIR_RECEIPT: "receipt.json", PAIR_PORT: String(8920 + i * 2) }, 10 * 60_000)));
+      const batchCpu = cpuUse(c0, cpuSnap());
+      for (let i = 0; i < k; i++) {
+        const rp = path.join(REPEATS_DIR, `${name}-copy${i}`, "receipt.json"); const rc = fs.existsSync(rp) ? JSON.parse(fs.readFileSync(rp, "utf8")) : null;
+        ps.repeats.runs++;
+        const o = rc ? rc.outcome : "NO_RECEIPT";
+        if (o === "PASS") ps.repeats.pass++; else if (o === "FAIL") ps.repeats.fail++; else ps.repeats.harness_invalid++;
+        if (rc) { ps.repeats.elapsed_ms.push(rc.elapsed_ms); for (const c of [rc.control, ...(rc.cases || [])].filter(Boolean)) { const s = (ps.repeats.cases[c.name] ||= { pass: 0, total: 0 }); if (c.pass !== undefined) { s.total++; if (c.pass) s.pass++; } } }
+      }
+      batches++;
+      log(`${name}: repeat batch ${batches} x${k} copies, cpu ${(batchCpu * 100).toFixed(0)}%, cumulative ${ps.repeats.pass}/${ps.repeats.runs} PASS`);
+      // dynamic adjustment: a copy failing under parallel load but the offline single run passing = contention, back off
+      if (ps.repeats.harness_invalid > 0 && !ps.adjusted_for_load) { ps.adjusted_for_load = true; status.adjustments.push(`${new Date().toISOString()} ${name}: ${ps.repeats.harness_invalid} repeat copies HARNESS_INVALID/NO_RECEIPT under load; copies capped at ${MAX_COPIES}, ${RAM_RESERVE_GB} GB reserved`); }
+      if (batchCpu >= CPU_FLOOR && batches >= 2) break;
+    }
+    ps.repeats.elapsed_ms = ps.repeats.elapsed_ms.slice(-50);
+    fs.writeFileSync(path.join(dir, "evidence", "repeat-stats.json"), JSON.stringify({ ...ps.repeats, elapsed_ms_median: ps.repeats.elapsed_ms.length ? [...ps.repeats.elapsed_ms].sort((a, b) => a - b)[ps.repeats.elapsed_ms.length >> 1] : null, updated_utc: new Date().toISOString(), note: "repeat copies run on D: with the network cut; only the statistics are committed" }, null, 1) + "\n");
+
+    // 3. ceilings, then commit the overwritten files
+    const pairsMB = mb(dirBytes(PAIRS));
+    pair.states.test_verdict = ps.offline.outcome; pair.states.proof_route = ps.proof_route; pair.states.last_run_utc = ps.offline.run_utc || null; pair.states.runner = "D: pair-runner lane 4"; pair.states.repeat_pass_rate = ps.repeats.runs ? `${ps.repeats.pass}/${ps.repeats.runs}` : "0/0";
+    fs.writeFileSync(path.join(dir, "pair.json"), JSON.stringify(pair, null, 1) + "\n");
+    if (pairsMB > TESTCODE_CEILING_MB) { log(`${name}: sandbox/pairs ${pairsMB} MB exceeds ${TESTCODE_CEILING_MB} MB ceiling; not committing`); status.adjustments.push(`${new Date().toISOString()} testcode ceiling exceeded (${pairsMB} MB)`); continue; }
+    sh("git", ["add", "-A", path.relative(CLONE, dir)], CLONE);
+    const c = sh("git", ["commit", "-q", "-m", `pair ${name}: cycle ${status.cycles} offline ${ps.offline.outcome}, repeats ${ps.repeats.pass}/${ps.repeats.runs}\n\nD: pair-runner lane 4. Receipts overwritten in place; history is git's.`], CLONE);
+    if (c.status === 0) { const p = sh("git", ["push", "-q", "-u", "origin", branch], CLONE); log(`${name}: push ${p.status === 0 ? "ok " + git(["rev-parse", "--short", "HEAD"]) : "FAILED " + (p.stderr || "").trim().slice(-160)}`); }
+  }
+
+  // resources
+  const cpu = cpuUse(cpu0, cpuSnap());
+  status.resources = { cycle_cpu_avg: Number((cpu * 100).toFixed(1)), cpu_floor_pct: CPU_FLOOR * 100, cpus: os.cpus().length, free_ram_gb: Number(freeGB().toFixed(2)), d_gridatlas_ci_gb: Number((dirBytes(ROOT) / 1073741824).toFixed(2)), ssd_ceiling_gb: SSD_CEILING_GB, testcode_pairs_mb: mb(dirBytes(PAIRS)), testcode_ceiling_mb: TESTCODE_CEILING_MB, cycle_ms: Date.now() - cycleStart };
+  status.updated_utc = new Date().toISOString();
+  writeAnalysis();
+}
+
+function writeAnalysis() {
+  const dir = path.join(GM1, "analysis"); fs.mkdirSync(dir, { recursive: true });
+  const r = status.resources;
+  const lines = [`# CD deploy plan, live (rewritten by the D: pair runner every ${CYCLE_MIN} minutes)`, "", `Updated ${status.updated_utc} · cycle ${status.cycles} · lane ${LANE}`, "",
+    "Rule: prove offline first; if offline cannot prove it, prove it on the testcode hosted runner; nothing is promoted by a runner. Promotion is the owner's call.", "",
+    "| pair | proof route | offline outcome | hosted (latest) | repeat pass-rate | median run | parallel |", "|---|---|---|---|---|---|---|"];
+  for (const [name, ps] of Object.entries(status.pairs)) {
+    const h = ps.hosted?.runs?.[0]; const med = ps.repeats.elapsed_ms.length ? [...ps.repeats.elapsed_ms].sort((a, b) => a - b)[ps.repeats.elapsed_ms.length >> 1] : null;
+    lines.push(`| ${ps.pair_id} | ${ps.proof_route} | ${ps.offline?.outcome} (${ps.offline?.run_utc || "-"}) | ${h ? `${h.sha} ${h.conclusion || h.status}` : ps.hosted?.error || "-"} | ${ps.repeats.pass}/${ps.repeats.runs} | ${med ? (med / 1000).toFixed(0) + " s" : "-"} | ${ps.parallel} |`);
+  }
+  lines.push("", "## Per-case (offline receipt)", "");
+  for (const [name, ps] of Object.entries(status.pairs)) for (const [c, o] of Object.entries(ps.offline?.cases || {})) { const rs = ps.repeats.cases[c]; lines.push(`- ${c}: ${o}${rs ? ` · repeats ${rs.pass}/${rs.total}` : ""}`); }
+  lines.push("", "## Resources", "", `| cycle CPU avg | floor | CPUs | free RAM | D:\\gridatlas-ci | SSD ceiling | testcode pairs | ceiling |`, `|---|---|---|---|---|---|---|---|`,
+    `| ${r.cycle_cpu_avg}% | ${r.cpu_floor_pct}% | ${r.cpus} | ${r.free_ram_gb} GB | ${r.d_gridatlas_ci_gb} GB | ${r.ssd_ceiling_gb} GB | ${r.testcode_pairs_mb} MB | ${r.testcode_ceiling_mb} MB |`,
+    "", "## Adjustments made by the runner", "", ...(status.adjustments.slice(-12).map((a) => "- " + a) || []), status.adjustments.length ? "" : "- none yet", "",
+    "## Awaiting the owner", "", "- Root Atlas promotion (v9.146 on the lane; root still 202609060259).", "- Earth-radius fix (child pair, R_ATLAS 6378.137).", "- Engine wording conflict on interconnector geometry.", "");
+  fs.writeFileSync(path.join(dir, "cd-plan.md"), lines.join("\n"));
+  fs.writeFileSync(path.join(dir, "runner-status.json"), JSON.stringify(status, null, 1) + "\n");
+  const st = sh("git", ["status", "--porcelain", "analysis"], GM1).stdout.trim();
+  if (!st) return;
+  sh("git", ["add", "analysis"], GM1);
+  const c = sh("git", ["commit", "-q", "-m", `analysis: cd-plan cycle ${status.cycles} (${LANE})`], GM1);
+  if (c.status === 0) { const p = sh("git", ["push", "-q", "origin", "HEAD"], GM1); log(`analysis: gridmachine1 push ${p.status === 0 ? "ok" : "FAILED"}`); }
+}
+
+const started = Date.now();
+log(`runner v2 start window ${WINDOW_MIN} min, cycle ${CYCLE_MIN} min, cpus ${os.cpus().length}, free RAM ${freeGB().toFixed(1)} GB`);
+while (Date.now() - started < WINDOW_MIN * 60_000) {
+  const t = Date.now();
+  try { await cycle(); } catch (e) { log("cycle error " + String(e).slice(0, 300)); }
+  const wait = Math.max(30_000, CYCLE_MIN * 60_000 - (Date.now() - t));
+  log(`cycle ${status.cycles} done, sleeping ${Math.round(wait / 1000)} s`);
+  await new Promise((r) => setTimeout(r, wait));
+}
+log("runner window ended");

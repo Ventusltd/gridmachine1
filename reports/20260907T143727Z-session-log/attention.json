@@ -1,0 +1,36 @@
+{
+ "schema": "gg2050.attention.v1",
+ "snapshot_utc": "2026-09-07T14:40:16.172Z",
+ "items": [
+  {
+   "id": "root-atlas-unpromoted",
+   "severity": "owner-decision",
+   "statement": "Root atlas/current.json is generation 202609060259; v9.146 sits on the lane at atlas/v/202609071232. Promotion is the owner decision and would not by itself turn the cartridge-proof gate green."
+  },
+  {
+   "id": "earth-radius",
+   "severity": "known-fault-carried",
+   "statement": "The interconnector module and the Pipeline News builder use R=6371.0088 against the estate decision R_ATLAS=6378.137. Spans read 0.11% low: BritNed 234.900 against 235.163 km. Per-end measurements unaffected."
+  },
+  {
+   "id": "cartridge-proof-red",
+   "severity": "quarantined",
+   "statement": "gridatlas run-current.mjs has been red since 2026-09-06T23:58Z on the root composition: substation-intelligence has no proof file and crosses the 368,640-byte boundary. Unchanged bytes, not re-queued."
+  },
+  {
+   "id": "direction-b-missing",
+   "severity": "missing-coverage",
+   "statement": "No far-converter arrival exists in v9.146 and 8 of 16 links have no far coordinate. Recorded NOT_IMPLEMENTED, never as a pass."
+  },
+  {
+   "id": "unpinned-news-partition",
+   "severity": "dependency",
+   "statement": "dist/major_project_news_v9_5_1.json is fetched by absolute URL from main and is unpinned. Aborted under the network cut without affecting arrivals or measurements."
+  },
+  {
+   "id": "ram-bound-repeats",
+   "severity": "harness",
+   "statement": "Repeat copies are RAM bound, not CPU bound. Four copies exhausted memory and produced 8 NO_RECEIPT results; two copies with 3 GB reserved give 4 of 4 PASS."
+  }
+ ]
+}
