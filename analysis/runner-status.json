@@ -1,7 +1,7 @@
 {
  "lane": "windows-rig",
- "started_utc": "2026-09-07T15:26:47.558Z",
- "cycles": 3,
+ "started_utc": "2026-09-07T16:00:33.274Z",
+ "cycles": 1,
  "pairs": {
   "20260907T141211Z-W": {
    "pair_id": "GG2050-PAIR-20260907T141211Z-W",
@@ -9,9 +9,9 @@
    "proof_route": "offline (D:, network cut)",
    "offline": {
     "outcome": "INCOMPLETE",
-    "run_utc": "2026-09-07T15:44:28.822Z",
+    "run_utc": "2026-09-07T16:00:34.322Z",
     "statement": "5 of 5 scored cases passed with a valid control; 1 requested behaviour(s) NOT_IMPLEMENTED, so the run is INCOMPLETE.",
-    "elapsed_ms": 18053,
+    "elapsed_ms": 24741,
     "cases": {
      "control-11386-harbour-farm": "PASS",
      "13429-ossian-derived": "PASS",
@@ -23,12 +23,19 @@
     }
    },
    "hosted": {
-    "fetched_utc": "2026-09-07T15:44:47.044Z",
+    "fetched_utc": "2026-09-07T16:00:59.259Z",
     "runs": [
      {
+      "sha": "d463659",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Ventusltd/testcode/actions/runs/34140874475",
+      "created": "2026-09-07T15:57:04Z"
+     },
+     {
       "sha": "db5c210",
-      "status": "in_progress",
-      "conclusion": null,
+      "status": "completed",
+      "conclusion": "success",
       "url": "https://github.com/Ventusltd/testcode/actions/runs/34139830375",
       "created": "2026-09-07T15:44:25Z"
      },
@@ -87,120 +94,42 @@
       "conclusion": "success",
       "url": "https://github.com/Ventusltd/testcode/actions/runs/34133517467",
       "created": "2026-09-07T14:32:35Z"
-     },
-     {
-      "sha": "0f386ec",
-      "status": "completed",
-      "conclusion": "success",
-      "url": "https://github.com/Ventusltd/testcode/actions/runs/34133392533",
-      "created": "2026-09-07T14:31:12Z"
      }
     ]
    },
    "repeats": {
-    "runs": 109,
-    "pass": 109,
+    "runs": 0,
+    "pass": 0,
     "fail": 0,
     "harness_invalid": 0,
-    "cases": {
-     "control-11386-harbour-farm": {
-      "pass": 109,
-      "total": 109
-     },
-     "13429-ossian-derived": {
-      "pass": 109,
-      "total": 109
-     },
-     "13432-marram-unmapped": {
-      "pass": 109,
-      "total": 109
-     },
-     "INTNED-britned-midpoint-anchor": {
-      "pass": 109,
-      "total": 109
-     },
-     "INTNED-britned-gb-converter-anchor": {
-      "pass": 109,
-      "total": 109
-     },
-     "INTVKL-viking-gb-only": {
-      "pass": 109,
-      "total": 109
-     },
-     "INTNED-far-converter-to-gb": {
-      "pass": 0,
-      "total": 0
-     }
-    },
-    "elapsed_ms": [
-     42947,
-     42580,
-     43461,
-     42902,
-     42953,
-     42650,
-     42934,
-     44189,
-     43011,
-     40106,
-     36958,
-     37246,
-     37602,
-     37317,
-     43462,
-     42889,
-     42876,
-     43362,
-     43791,
-     43396,
-     42203,
-     42142,
-     42736,
-     44473,
-     44176,
-     44462,
-     43298,
-     44739,
-     43756,
-     41686,
-     41686,
-     42042,
-     42625,
-     42333,
-     42950,
-     43169,
-     43976,
-     43934,
-     43293,
-     43750,
-     44904,
-     42791,
-     43667,
-     43345,
-     44786,
-     44509,
-     44808,
-     41530,
-     42564,
-     42818
-    ]
+    "cases": {},
+    "elapsed_ms": []
    },
-   "parallel": 5
+   "parallel": 5,
+   "diseases": {
+    "control-11386-harbour-farm": "OK_ENGINE_MEASURED",
+    "13429-ossian-derived": "OK_ENGINE_MEASURED",
+    "13432-marram-unmapped": "OK_NO_COORDINATE",
+    "INTNED-britned-midpoint-anchor": "OK_INTERCONNECTOR_LANE",
+    "INTNED-britned-gb-converter-anchor": "OK_INTERCONNECTOR_LANE",
+    "INTVKL-viking-gb-only": "OK_INTERCONNECTOR_LANE",
+    "INTNED-far-converter-to-gb": "NOT_APPLICABLE"
+   }
   }
  },
  "resources": {
-  "cycle_cpu_avg": 61.3,
+  "cycle_cpu_avg": 89.3,
   "cpu_floor_pct": 20,
   "cpus": 20,
-  "free_ram_gb": 6.18,
+  "free_ram_gb": 4.5,
   "d_gridatlas_ci_gb": 0.13,
   "ssd_ceiling_gb": 900,
   "testcode_pairs_mb": 30,
   "testcode_ceiling_mb": 300,
-  "cycle_ms": 754700
+  "cycle_ms": 28551
  },
  "adjustments": [
-  "2026-09-07T15:31:38.481Z 20260907T141211Z-W: free RAM 3.6 GB, repeats paused"
+  "2026-09-07T16:00:59.262Z 20260907T141211Z-W: free RAM 4.6 GB, repeats paused"
  ],
- "updated_utc": "2026-09-07T15:57:02.697Z"
+ "updated_utc": "2026-09-07T16:01:01.831Z"
 }
