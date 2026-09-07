@@ -22,6 +22,8 @@ Every item reported on 2026-09-07, with the ticket it became. All were reported 
 | 15 | Print should be centred on the page with a scaling control; the attribution is good | GG-036 | Open, new |
 | 16 | The Scope control has no function. It should fire like the onshore grid engine at any chosen point | GG-037 | Open, new. **Confirmed in the code:** the computation, the drawing and the arming function all exist, and nothing calls the arming function |
 | 17 | An offshore project that **does** fire, and Scope still dead. Scope should be its own cartridge, built like the poly tool, dispatching by class: onshore to the substation finder, offshore to the new offshore rule, interconnector to the interconnector rule | GG-034, GG-037 | Evidence added to both. The offshore observation changes the diagnosis and is written up below |
+| 18 | A slider for filtering by project size, and sorting by the capacity column, were there before and are gone | GG-038 | Open. Sorting by capacity **is still present** in every release held, including the current one. A size **slider** is present in none of them, so it is a gap rather than a regression, on the evidence available |
+| 18b | No primary key across the two applications, so versions get mixed up. The other lane's inventory looks like the beginning of one | GG-039 | Open, and the most structural item of the night. A key already exists in the candidate-pair work and does not exist in production |
 
 ## GG-036 · Print layout
 
@@ -72,3 +74,31 @@ The owner's design, and it unifies two things I had been treating separately.
 **Scope is the cable-engine router with no project attached.** At any point the reader chooses, it asks which cable question applies there and fires that engine: onshore, find the substations to snap to; offshore, use the offshore rule; interconnector, fire the interconnector rule. That is exactly the routing the pipeline will declare per row, applied to a bare coordinate instead of a register entry.
 
 Two consequences worth stating. First, this makes Scope the **cheapest possible test of the router**, because it exercises the dispatch without needing a project, a link or a table row. Second, it means Scope must not grow its own copy of the measurement: it is the same engines answering at a different origin, and a second implementation would drift from the first within a version or two.
+
+## GG-038 · Size filter, and what the evidence actually shows
+
+Checked across every release held: v9.5, v9.6, v9.6.2, v9.7, and the three September stamped releases including the current one.
+
+**Sorting by capacity is present in all of them, including today's.** The control is the sort selector, and the table opens sorted by capacity by default.
+
+**A range slider is present in none of them.** No release in this repository contains a range input or a minimum and maximum capacity control.
+
+So on the evidence held this is a gap rather than something lost, exactly like the missing technology filters in GG-026. That is now twice tonight that a remembered control appears in no release I can find: either it lived in a build that is not in this repository, or it was prototyped and never shipped. **That question is settled by the key in GG-039, not by more searching.**
+
+## GG-039 · A primary key for the pair, and why the version confusion is structural
+
+The most important item of the night, and the owner's diagnosis is right: without a key there is nothing to work from, and a version mix-up is the expected outcome rather than an accident.
+
+**The key already exists, in one place only.** The candidate pairs built today carry exactly this: an immutable identity binding one Pipeline News release to one Atlas composition at a stamp, with a relational record of every component, its repository, its path and its content hash. The reverse-impact query answers what changed and which recorded results still stand.
+
+**Production carries none of it.** A Pipeline News release is stamped, an Atlas composition is stamped, and nothing joins them. So the map and the table can disagree about which projects exist, which is GG-035, and a report can be made against a composition the tests never saw, which is every owner report tonight. Those are not separate bugs. They are one missing key seen from three sides.
+
+**The other lane's inventory is a different instrument, and both are needed.** That inventory is a filesystem census: every path with its logical and allocated bytes and its modification time. It answers what exists on a machine. The pair key answers what was bound to what, and what was tested together. A census cannot tell you a table and a map were tested as one thing, and a key cannot tell you what is on disk.
+
+**What to do, in order.**
+
+1. **Give every production release the pair key it already deserves.** A Pipeline News release names the Atlas composition it was built and tested against; the composition names the release. Both write it where a reader and a test can see it.
+2. **Put the key in the artefact.** The export provenance contract already requires the composition stamp on anything that leaves the building. Extend it to the pair key, so a printed sheet says exactly which two things produced it.
+3. **Make the key the subject of the register.** Tickets then attach to a pair rather than to a URL, and "does this still happen" becomes answerable instead of a matter of memory.
+
+Once that exists, the question behind GG-026 and GG-038 stops being archaeology: a remembered control either belongs to a keyed pair or it never shipped, and either answer is a fact rather than a search.
