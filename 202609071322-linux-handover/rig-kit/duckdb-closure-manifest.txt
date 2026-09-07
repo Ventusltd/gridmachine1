@@ -1,0 +1,14 @@
+762783 https://cdn.jsdelivr.net/npm/maplibre-gl@3.6.2/dist/maplibre-gl.js
+63722 https://cdn.jsdelivr.net/npm/maplibre-gl@3.6.2/dist/maplibre-gl.css
+26009 https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.29.0/+esm
+40621595 https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.29.0/dist/duckdb-mvp.wasm
+820866 https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.29.0/dist/duckdb-browser-mvp.worker.js
+35659694 https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.29.0/dist/duckdb-eh.wasm
+760530 https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.29.0/dist/duckdb-browser-eh.worker.js
+200034 https://cdn.jsdelivr.net/npm/apache-arrow@17.0.0/+esm
+9269 https://cdn.jsdelivr.net/npm/flatbuffers@24.3.25/+esm
+10708 https://cdn.jsdelivr.net/npm/tslib@2.6.3/+esm
+2803379 https://extensions.duckdb.org/v1.1.1/wasm_eh/parquet.duckdb_extension.wasm
+2713313 https://extensions.duckdb.org/v1.1.1/wasm_mvp/parquet.duckdb_extension.wasm
+4411 https://ventusltd.github.io/gridatlas/data/repd_v9_manifest_202608290716.json
+1454200 https://ventusltd.github.io/gridatlas/data/repd_projects_202608290716.parquet
