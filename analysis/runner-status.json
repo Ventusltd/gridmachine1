@@ -1,7 +1,7 @@
 {
  "lane": "windows-rig",
  "started_utc": "2026-09-07T14:55:44.615Z",
- "cycles": 1,
+ "cycles": 2,
  "pairs": {
   "20260907T141211Z-W": {
    "pair_id": "GG2050-PAIR-20260907T141211Z-W",
@@ -9,9 +9,9 @@
    "proof_route": "offline (D:, network cut)",
    "offline": {
     "outcome": "INCOMPLETE",
-    "run_utc": "2026-09-07T14:55:45.611Z",
+    "run_utc": "2026-09-07T15:10:48.387Z",
     "statement": "5 of 5 scored cases passed with a valid control; 1 requested behaviour(s) NOT_IMPLEMENTED, so the run is INCOMPLETE.",
-    "elapsed_ms": 19702,
+    "elapsed_ms": 18089,
     "cases": {
      "control-11386-harbour-farm": "PASS",
      "13429-ossian-derived": "PASS",
@@ -23,12 +23,19 @@
     }
    },
    "hosted": {
-    "fetched_utc": "2026-09-07T14:56:05.528Z",
+    "fetched_utc": "2026-09-07T15:11:06.796Z",
     "runs": [
      {
+      "sha": "6f5e6b4",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Ventusltd/testcode/actions/runs/34135641483",
+      "created": "2026-09-07T14:56:09Z"
+     },
+     {
       "sha": "674a75f",
-      "status": "in_progress",
-      "conclusion": null,
+      "status": "completed",
+      "conclusion": "success",
       "url": "https://github.com/Ventusltd/testcode/actions/runs/34135604156",
       "created": "2026-09-07T14:55:42Z"
      },
@@ -91,29 +98,63 @@
     ]
    },
    "repeats": {
-    "runs": 0,
-    "pass": 0,
+    "runs": 4,
+    "pass": 4,
     "fail": 0,
     "harness_invalid": 0,
-    "cases": {},
-    "elapsed_ms": []
+    "cases": {
+     "control-11386-harbour-farm": {
+      "pass": 4,
+      "total": 4
+     },
+     "13429-ossian-derived": {
+      "pass": 4,
+      "total": 4
+     },
+     "13432-marram-unmapped": {
+      "pass": 4,
+      "total": 4
+     },
+     "INTNED-britned-midpoint-anchor": {
+      "pass": 4,
+      "total": 4
+     },
+     "INTNED-britned-gb-converter-anchor": {
+      "pass": 4,
+      "total": 4
+     },
+     "INTVKL-viking-gb-only": {
+      "pass": 4,
+      "total": 4
+     },
+     "INTNED-far-converter-to-gb": {
+      "pass": 0,
+      "total": 0
+     }
+    },
+    "elapsed_ms": [
+     36363,
+     36090,
+     36395,
+     36698
+    ]
    },
    "parallel": 5
   }
  },
  "resources": {
-  "cycle_cpu_avg": 47.4,
+  "cycle_cpu_avg": 38,
   "cpu_floor_pct": 20,
   "cpus": 20,
-  "free_ram_gb": 3.72,
+  "free_ram_gb": 6.93,
   "d_gridatlas_ci_gb": 0.13,
   "ssd_ceiling_gb": 900,
   "testcode_pairs_mb": 30,
   "testcode_ceiling_mb": 300,
-  "cycle_ms": 24202
+  "cycle_ms": 98285
  },
  "adjustments": [
   "2026-09-07T14:56:05.532Z 20260907T141211Z-W: free RAM 3.9 GB, repeats paused"
  ],
- "updated_utc": "2026-09-07T14:56:08.823Z"
+ "updated_utc": "2026-09-07T15:12:22.927Z"
 }
