@@ -1,7 +1,7 @@
 {
  "lane": "windows-rig",
  "started_utc": "2026-09-07T16:22:12.745Z",
- "cycles": 3,
+ "cycles": 4,
  "pairs": {
   "20260907T141211Z-W": {
    "pair_id": "GG2050-PAIR-20260907T141211Z-W",
@@ -9,9 +9,9 @@
    "proof_route": "offline (D:, network cut)",
    "offline": {
     "outcome": "INCOMPLETE",
-    "run_utc": "2026-09-07T16:42:41.804Z",
+    "run_utc": "2026-09-07T16:55:06.789Z",
     "statement": "5 of 5 scored cases passed with a valid control; 1 requested behaviour(s) NOT_IMPLEMENTED, so the run is INCOMPLETE.",
-    "elapsed_ms": 18809,
+    "elapsed_ms": 18762,
     "cases": {
      "control-11386-harbour-farm": "PASS",
      "13429-ossian-derived": "PASS",
@@ -23,12 +23,19 @@
     }
    },
    "hosted": {
-    "fetched_utc": "2026-09-07T16:43:00.925Z",
+    "fetched_utc": "2026-09-07T16:55:25.700Z",
     "runs": [
      {
-      "sha": "cd00a9c",
+      "sha": "01fc5f3",
       "status": "in_progress",
       "conclusion": null,
+      "url": "https://github.com/Ventusltd/testcode/actions/runs/34145395697",
+      "created": "2026-09-07T16:55:04Z"
+     },
+     {
+      "sha": "cd00a9c",
+      "status": "completed",
+      "conclusion": "success",
       "url": "https://github.com/Ventusltd/testcode/actions/runs/34144506897",
       "created": "2026-09-07T16:42:38Z"
      },
@@ -87,45 +94,38 @@
       "conclusion": "success",
       "url": "https://github.com/Ventusltd/testcode/actions/runs/34138770101",
       "created": "2026-09-07T15:31:44Z"
-     },
-     {
-      "sha": "487e469",
-      "status": "completed",
-      "conclusion": "success",
-      "url": "https://github.com/Ventusltd/testcode/actions/runs/34137865488",
-      "created": "2026-09-07T15:21:14Z"
      }
     ]
    },
    "repeats": {
-    "runs": 121,
-    "pass": 121,
+    "runs": 139,
+    "pass": 139,
     "fail": 0,
     "harness_invalid": 0,
     "cases": {
      "control-11386-harbour-farm": {
-      "pass": 121,
-      "total": 121
+      "pass": 139,
+      "total": 139
      },
      "13429-ossian-derived": {
-      "pass": 121,
-      "total": 121
+      "pass": 139,
+      "total": 139
      },
      "13432-marram-unmapped": {
-      "pass": 121,
-      "total": 121
+      "pass": 139,
+      "total": 139
      },
      "INTNED-britned-midpoint-anchor": {
-      "pass": 121,
-      "total": 121
+      "pass": 139,
+      "total": 139
      },
      "INTNED-britned-gb-converter-anchor": {
-      "pass": 121,
-      "total": 121
+      "pass": 139,
+      "total": 139
      },
      "INTVKL-viking-gb-only": {
-      "pass": 121,
-      "total": 121
+      "pass": 139,
+      "total": 139
      },
      "INTNED-far-converter-to-gb": {
       "pass": 0,
@@ -133,24 +133,6 @@
      }
     },
     "elapsed_ms": [
-     41509,
-     42441,
-     43519,
-     43091,
-     42356,
-     42777,
-     43479,
-     49952,
-     50580,
-     50758,
-     41309,
-     45686,
-     46264,
-     46106,
-     44319,
-     45137,
-     44019,
-     42832,
      42063,
      42873,
      43362,
@@ -182,7 +164,25 @@
      43840,
      43967,
      43967,
-     44251
+     44251,
+     43315,
+     43324,
+     42670,
+     44157,
+     43952,
+     44227,
+     44171,
+     44444,
+     44576,
+     44674,
+     44458,
+     44373,
+     43214,
+     43233,
+     43690,
+     48422,
+     48692,
+     48494
     ]
    },
    "parallel": 5,
@@ -198,27 +198,28 @@
   }
  },
  "resources": {
-  "cycle_cpu_avg": 65,
+  "cycle_cpu_avg": 65.2,
   "cpu_floor_pct": 20,
   "cpus": 20,
-  "free_ram_gb": 6.09,
+  "free_ram_gb": 4.33,
   "d_gridatlas_ci_gb": 0.13,
   "ssd_ceiling_gb": 900,
   "testcode_pairs_mb": 30,
   "testcode_ceiling_mb": 300,
-  "cycle_ms": 741010
+  "cycle_ms": 294655
  },
  "adjustments": [
-  "2026-09-07T16:29:47.092Z 20260907T141211Z-W: free RAM 3.4 GB against a 3 GB floor, repeats held this cycle"
+  "2026-09-07T16:29:47.092Z 20260907T141211Z-W: free RAM 3.4 GB against a 3 GB floor, repeats held this cycle",
+  "2026-09-07T16:59:57.138Z 20260907T141211Z-W: free RAM 4.3 GB against a 3 GB floor, repeats held this cycle"
  ],
  "governor": {
   "ram_floor_gb": 3,
   "ram_reserve_gb": 4,
-  "observed_cost_gb_per_copy": 0.41,
+  "observed_cost_gb_per_copy": 0.42,
   "cap_now": 3,
   "cap_max": 3,
   "floor_hits": 0,
   "min_free_seen_gb": 3.37
  },
- "updated_utc": "2026-09-07T16:55:01.967Z"
+ "updated_utc": "2026-09-07T17:00:00.585Z"
 }
