@@ -10,6 +10,8 @@ The same holds here. What connects a project to the grid is a **cable**, and cab
 
 The boundary is the cable, not the label on the project. That is a better cut than technology, because two projects with the same technology label can be joined by different cables, and the cable is the thing being measured.
 
+**Each engine has a datasheet: [CABLE-ENGINE-DATASHEETS.md](CABLE-ENGINE-DATASHEETS.md).** The datasheet is the contract a test asserts against, so an engine without one is not ready to be built.
+
 ## The engines, first cut
 
 | cable engine | the cable it models | endpoints | what it measures | what it needs |
