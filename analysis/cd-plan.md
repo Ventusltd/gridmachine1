@@ -1,21 +1,21 @@
 # HOMAGE TO TURING - live CD deploy plan, written by the continuous runners
 
-Updated 2026-09-07T17:12:32.502Z · cycle 5 · lane windows-rig
+Updated 2026-09-07T17:15:23.078Z · cycle 6 · lane windows-rig
 
 Rule: prove offline first; if offline cannot prove it, prove it on the testcode hosted runner; nothing is promoted by a runner. Promotion is the owner's call.
 
 | pair | proof route | offline outcome | hosted (latest) | determinism rate | median run | parallel |
 |---|---|---|---|---|---|---|
-| GG2050-PAIR-20260907T141211Z-W | offline (D:, network cut) | INCOMPLETE (2026-09-07T17:00:06.220Z) | ad19825 in_progress | 187/187 | 44 s | 5 |
+| GG2050-PAIR-20260907T141211Z-W | offline (D:, network cut) | INCOMPLETE (2026-09-07T17:12:37.180Z) | 6f33bd8 in_progress | 196/196 | 44 s | 5 |
 
 ## Per-case (offline receipt)
 
-- control-11386-harbour-farm: PASS · repeats 187/187
-- 13429-ossian-derived: PASS · repeats 187/187
-- 13432-marram-unmapped: PASS · repeats 187/187
-- INTNED-britned-midpoint-anchor: PASS · repeats 187/187
-- INTNED-britned-gb-converter-anchor: PASS · repeats 187/187
-- INTVKL-viking-gb-only: PASS · repeats 187/187
+- control-11386-harbour-farm: PASS · repeats 196/196
+- 13429-ossian-derived: PASS · repeats 196/196
+- 13432-marram-unmapped: PASS · repeats 196/196
+- INTNED-britned-midpoint-anchor: PASS · repeats 196/196
+- INTNED-britned-gb-converter-anchor: PASS · repeats 196/196
+- INTVKL-viking-gb-only: PASS · repeats 196/196
 - INTNED-far-converter-to-gb: NOT_IMPLEMENTED · repeats 0/0
 
 ## Disease watch (from this cycle's sentinels, no extra run)
@@ -38,18 +38,19 @@ A disease closes only on evidence. States beginning OK_ are legitimate outcomes,
 
 | cycle CPU avg | floor | CPUs | free RAM | D:\gridatlas-ci | SSD ceiling | testcode pairs | ceiling |
 |---|---|---|---|---|---|---|---|
-| 63.6% | 20% | 20 | 6.06 GB | 0.13 GB | 900 GB | 30 MB | 300 MB |
+| 68.4% | 20% | 20 | 3.33 GB | 0.13 GB | 900 GB | 30 MB | 300 MB |
 
-Memory governor: floor 3 GB, reserve 4 GB, measured cost 0.41 GB per copy, cap 3 of 3, floor hits 0, least free seen 3.37 GB.
+Memory governor: floor 3 GB, reserve 4 GB, measured cost 0.55 GB per copy, cap 3 of 3, floor hits 0, least free seen 3.37 GB.
 
 ## Memory governor
 
-Floor 3 GB, reserve 4 GB, measured cost 0.41 GB per copy, cap 3 of 3, floor hits 0, least free seen 3.37 GB.
+Floor 3 GB, reserve 4 GB, measured cost 0.55 GB per copy, cap 3 of 3, floor hits 0, least free seen 3.37 GB.
 
 ## Adjustments made by the runner
 
 - 2026-09-07T16:29:47.092Z 20260907T141211Z-W: free RAM 3.4 GB against a 3 GB floor, repeats held this cycle
 - 2026-09-07T16:59:57.138Z 20260907T141211Z-W: free RAM 4.3 GB against a 3 GB floor, repeats held this cycle
+- 2026-09-07T17:15:19.308Z 20260907T141211Z-W: free RAM 3.6 GB against a 3 GB floor, repeats held this cycle
 
 
 ## Awaiting the owner
