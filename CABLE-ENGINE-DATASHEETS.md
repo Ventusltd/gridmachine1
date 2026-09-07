@@ -92,11 +92,11 @@ Read with [CABLE-ENGINES.md](CABLE-ENGINES.md), which holds the rule these all o
 | **Endpoints** | Site → 132 kV or lower substation, or declared distribution connection |
 | **Voltage scope** | 132 kV, 66 kV, 33 kV |
 | **Geometry** | Ellipsoidal straight line. Corridor calibration must be established separately for distribution cable routes and not inherited from transmission |
-| **Inputs held** | Substations at 33 kV and above are already mapped, so part of the asset set exists |
-| **Inputs missing** | Distribution operator connection data, headroom and constraint publications, and a route calibration of its own |
+| **Inputs held** | More than recorded earlier. Verified in the layer files: 6,227 features at 132 kV with operators attached, 1,171 at 66 kV, 5,800 substations of which 573 are tagged 132 kV and 2,075 at 33 kV. The assets are present; see [DATA-PROVENANCE](reports/20260907T230000Z-engine-capsule/DATA-PROVENANCE.md) |
+| **Inputs missing** | Distribution operator connection data, headroom and constraint publications, and a route calibration of its own. Not the assets, which exist |
 | **Outputs** | named asset, voltage, distance, operator, and the constraint position where published |
 | **Legitimate silence** | No mapped distribution asset in budget, with the true distance beyond it |
-| **Status** | **Missing as an engine.** The assets are partly there, the question is not asked |
+| **Status** | **Missing as an engine, but not for want of data.** The assets are there and the question is simply not asked |
 | **Open tickets** | new |
 
 ---
