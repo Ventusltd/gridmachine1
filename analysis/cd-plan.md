@@ -1,21 +1,21 @@
 # HOMAGE TO TURING - live CD deploy plan, written by the continuous runners
 
-Updated 2026-09-07T18:30:22.299Z · cycle 19 · lane windows-rig
+Updated 2026-09-07T18:42:40.564Z · cycle 20 · lane windows-rig
 
 Rule: prove offline first; if offline cannot prove it, prove it on the testcode hosted runner; nothing is promoted by a runner. Promotion is the owner's call.
 
 | pair | proof route | offline outcome | hosted (latest) | determinism rate | median run | parallel |
 |---|---|---|---|---|---|---|
-| GG2050-PAIR-20260907T141211Z-W | offline (D:, network cut) | INCOMPLETE (2026-09-07T18:27:36.501Z) | 4bb265e in_progress | 465/465 | 43 s | 5 |
+| GG2050-PAIR-20260907T141211Z-W | offline (D:, network cut) | INCOMPLETE (2026-09-07T18:30:28.122Z) | 0ca871a in_progress | 512/512 | 44 s | 5 |
 
 ## Per-case (offline receipt)
 
-- control-11386-harbour-farm: PASS · repeats 465/465
-- 13429-ossian-derived: PASS · repeats 465/465
-- 13432-marram-unmapped: PASS · repeats 465/465
-- INTNED-britned-midpoint-anchor: PASS · repeats 465/465
-- INTNED-britned-gb-converter-anchor: PASS · repeats 465/465
-- INTVKL-viking-gb-only: PASS · repeats 465/465
+- control-11386-harbour-farm: PASS · repeats 512/512
+- 13429-ossian-derived: PASS · repeats 512/512
+- 13432-marram-unmapped: PASS · repeats 512/512
+- INTNED-britned-midpoint-anchor: PASS · repeats 512/512
+- INTNED-britned-gb-converter-anchor: PASS · repeats 512/512
+- INTVKL-viking-gb-only: PASS · repeats 512/512
 - INTNED-far-converter-to-gb: NOT_IMPLEMENTED · repeats 0/0
 
 ## Disease watch (from this cycle's sentinels, no extra run)
@@ -38,7 +38,7 @@ A disease closes only on evidence. States beginning OK_ are legitimate outcomes,
 
 | cycle CPU avg | floor | CPUs | free RAM | D:\gridatlas-ci | SSD ceiling | testcode pairs | ceiling |
 |---|---|---|---|---|---|---|---|
-| 68.7% | 20% | 20 | 4.18 GB | 0.13 GB | 900 GB | 30 MB | 300 MB |
+| 61.8% | 20% | 20 | 5.98 GB | 0.13 GB | 900 GB | 30 MB | 300 MB |
 
 Memory governor: floor 3 GB, reserve 4 GB, measured cost 0.41 GB per copy, cap 3 of 3, floor hits 0, least free seen 3.37 GB.
 
