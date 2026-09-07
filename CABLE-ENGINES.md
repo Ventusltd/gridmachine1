@@ -35,6 +35,43 @@ An earlier version gated measurement on technology and offshore projects were wi
 
 So: every project reaches an engine. An engine that cannot answer hands to the onshore-connection engine as the general case and **says that it did**. A project with no usable geometry gets a named reason, never silence.
 
+
+## Priority, and what is protected
+
+Set by the owner, 2026-09-07.
+
+| rank | engine | why |
+| --- | --- | --- |
+| 1 | **E3 offshore export cable** | Does not exist. It is the reason offshore arrivals look broken, and offshore is where the capacity is |
+| 2 | **E2 interconnectors** | Draws for two of ten. The missing facts are public and already partly held |
+| 3 | **E1 substation finder within a radius** | **Protected.** Works today and must keep working |
+| 3 | **E4 400 kV overhead line and transmission connection** | **Protected.** The most complete engine in the estate |
+
+**Protection is a test rule, not a wish.** E1 and E4 have passing receipts today, including a solar control that measures to a named substation and a transmission card that reports published circuits and ratings. Those receipts become the control set. Any version that touches the engines must leave them green, and the previous candidate pair stands as the control it is compared against. A change that improves offshore while moving a protected number is rejected, not negotiated.
+
+**Scale what works, replace what does not.** E1 and E4 are scaled: more coverage, better bounds, the same question. E2 and E3 are not scaled, they are given different logic, because their fault is that the wrong question was being asked. A radius search will never find a far converter or an export cable's landfall no matter how far it is widened.
+
+## The pipeline declares the engine
+
+A project's engine category is decided **in the Pipeline News pipeline** and carried as a field on the row, rather than being guessed by the map at arrival. The table shows it, the MAP link carries it, and the receipt asserts it.
+
+| technology in the register | engine category | fallback |
+| --- | --- | --- |
+| Solar, battery storage | E1 substation finder | none needed; E1 is the general case |
+| Onshore wind | E1, or E4 where a transmission connection is declared | E1 |
+| **Offshore wind** | **E3 export cable to the declared onshore connection** | E1, declared as a fallback in the output |
+| **Interconnector** | **E2 subsea link** | none; a link with no far converter reports the far end as not held |
+| Any project with a declared transmission point of connection | E4 declared connection | E1 |
+| Distribution-scale projects | E5 132 kV, when it exists | E1 |
+
+Three reasons this belongs in the pipeline rather than in the map:
+
+1. **It is testable before a map ever opens.** A row asserting the wrong engine is a table-level failure, caught in seconds rather than by driving a browser.
+2. **It makes the routing visible to a reader.** Someone looking at an offshore row can see that it will be answered by an export-cable question, not by a proximity search.
+3. **It removes the guess.** The map currently infers what to do from technology at arrival, which is exactly the inference that made offshore look broken. A declared field cannot silently disagree with itself.
+
+The assignment is made from the declared connection where one is held, and from technology and capacity where one is not. The rule from above still governs: the category selects the question, never whether a question is answered.
+
 ## Consequences
 
 **For the tests.** The classifier gains a state per engine, and must distinguish an engine answering its own question from an engine falling back to the general one. A fallback nobody notices is how a wrong question survives.
