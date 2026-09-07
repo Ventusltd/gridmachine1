@@ -68,7 +68,8 @@
    "started_utc": "2026-09-07T09:29Z",
    "window_min": 360,
    "window_ends_utc": "2026-09-07T15:29Z",
-   "lanes": "offline / live / twins (read-only, never re-run)"
+   "lanes": "offline / live / twins (read-only, never re-run)",
+   "relaunch_note": "window ended ~15:29Z; a background watcher relaunches it for a further 360 minutes on exit"
   },
   {
    "name": "pair runner lane 4",
@@ -93,8 +94,11 @@
   "writes": "artifacts only, never commits"
  },
  "cadence": {
-  "check_every_min": 15,
-  "mechanism": "session cron, session-only, must be recreated in a new session"
+  "check_every_min": 360,
+  "changed_utc": "2026-09-07T14:46:35.395Z",
+  "reason": "owner: 15-minute supervision was burning tokens with no release to show for it",
+  "mechanism": "session cron, session-only, must be recreated in a new session",
+  "on_demand": "the owner prompts for a check at any time"
  },
  "latest_verdicts": {
   "cycle": 1,
@@ -129,5 +133,14 @@
   "repo-convention proof files for v9.145 and v9.146",
   "far-end converters for the 8 links without a far coordinate",
   "owner: root Atlas promotion; engine wording conflict on interconnector geometry"
+ ],
+ "external_studies": [
+  {
+   "id": "20260907T144500Z-logic-study-brief",
+   "recipient": "external reviewer without repository access",
+   "subject": "applicability logic of the coherence engine, 8 questions",
+   "path": "reports/20260907T144500Z-logic-study-brief/BRIEF.md",
+   "answer_expected": "pasted back as Markdown; file the reply beside the brief"
+  }
  ]
 }

@@ -95,7 +95,7 @@ State to trust: `RESUME.json` in this directory, and `analysis/cd-plan.md` at th
 To resume:
 
 1. Check both runners are alive by command line: `worker.mjs` (window ends ~15:29 UTC) and `pair-runner.mjs` (window ends ~02:02 UTC on 2026-09-08). Relaunch a dead one detached with `CI_WINDOW_MIN` set to the **remaining** minutes only, working directory `D:\gridatlas-ci`.
-2. Recreate the 15-minute check as a session cron; it is session-only and does not survive.
+2. Recreate the supervision check as a session cron at six-hour cadence (the owner reduced it from 15 minutes on 2026-09-07); it is session-only and does not survive. The owner may prompt for a check at any time.
 3. Read `analysis/cd-plan.md` for the current per-pair verdicts, and `sandbox/pairs/<pair>/evidence/` on the branch for the receipts behind them.
 4. Do not promote anything. Do not touch digital-twins. Do not rename anything to include an agent name.
 
