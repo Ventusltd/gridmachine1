@@ -1,6 +1,6 @@
 {
  "lane": "windows-rig",
- "started_utc": "2026-09-07T14:29:25.641Z",
+ "started_utc": "2026-09-07T14:32:16.066Z",
  "cycles": 1,
  "pairs": {
   "20260907T141211Z-W": {
@@ -9,9 +9,9 @@
    "proof_route": "offline (D:, network cut)",
    "offline": {
     "outcome": "PASS",
-    "run_utc": "2026-09-07T14:29:27.098Z",
+    "run_utc": "2026-09-07T14:32:17.193Z",
     "statement": "5 of 5 scored cases passed with a valid control; 1 direction NOT_IMPLEMENTED.",
-    "elapsed_ms": 18781,
+    "elapsed_ms": 18915,
     "cases": {
      "control-11386-harbour-farm": "PASS",
      "13429-ossian-derived": "PASS",
@@ -23,12 +23,19 @@
     }
    },
    "hosted": {
-    "fetched_utc": "2026-09-07T14:29:45.679Z",
+    "fetched_utc": "2026-09-07T14:32:36.111Z",
     "runs": [
      {
-      "sha": "8c88aae",
+      "sha": "0f386ec",
       "status": "in_progress",
       "conclusion": null,
+      "url": "https://github.com/Ventusltd/testcode/actions/runs/34133392533",
+      "created": "2026-09-07T14:31:12Z"
+     },
+     {
+      "sha": "8c88aae",
+      "status": "completed",
+      "conclusion": "success",
       "url": "https://github.com/Ventusltd/testcode/actions/runs/34133209228",
       "created": "2026-09-07T14:29:13Z"
      },
@@ -56,30 +63,61 @@
     ]
    },
    "repeats": {
-    "runs": 8,
-    "pass": 0,
+    "runs": 4,
+    "pass": 4,
     "fail": 0,
-    "harness_invalid": 8,
-    "cases": {},
-    "elapsed_ms": []
+    "harness_invalid": 0,
+    "cases": {
+     "control-11386-harbour-farm": {
+      "pass": 4,
+      "total": 4
+     },
+     "13429-ossian-derived": {
+      "pass": 4,
+      "total": 4
+     },
+     "13432-marram-unmapped": {
+      "pass": 4,
+      "total": 4
+     },
+     "INTNED-britned-midpoint-anchor": {
+      "pass": 4,
+      "total": 4
+     },
+     "INTNED-britned-gb-converter-anchor": {
+      "pass": 4,
+      "total": 4
+     },
+     "INTVKL-viking-gb-only": {
+      "pass": 4,
+      "total": 4
+     },
+     "INTNED-far-converter-to-gb": {
+      "pass": 0,
+      "total": 0
+     }
+    },
+    "elapsed_ms": [
+     37644,
+     37433,
+     49014,
+     49257
+    ]
    },
-   "parallel": 1
+   "parallel": 5
   }
  },
  "resources": {
-  "cycle_cpu_avg": 72.5,
+  "cycle_cpu_avg": 70,
   "cpu_floor_pct": 20,
   "cpus": 20,
-  "free_ram_gb": 8.23,
+  "free_ram_gb": 7.76,
   "d_gridatlas_ci_gb": 0.13,
   "ssd_ceiling_gb": 900,
   "testcode_pairs_mb": 30,
   "testcode_ceiling_mb": 300,
-  "cycle_ms": 105884
+  "cycle_ms": 109958
  },
- "adjustments": [
-  "2026-09-07T14:30:24.376Z 20260907T141211Z-W: repeat failures under load, parallel -> 3",
-  "2026-09-07T14:31:08.044Z 20260907T141211Z-W: repeat failures under load, parallel -> 1"
- ],
- "updated_utc": "2026-09-07T14:31:11.749Z"
+ "adjustments": [],
+ "updated_utc": "2026-09-07T14:34:06.029Z"
 }
