@@ -1,7 +1,7 @@
 {
  "lane": "windows-rig",
  "started_utc": "2026-09-07T16:22:12.745Z",
- "cycles": 25,
+ "cycles": 26,
  "pairs": {
   "20260907T141211Z-W": {
    "pair_id": "GG2050-PAIR-20260907T141211Z-W",
@@ -9,9 +9,9 @@
    "proof_route": "offline (D:, network cut)",
    "offline": {
     "outcome": "INCOMPLETE",
-    "run_utc": "2026-09-07T19:00:22.391Z",
+    "run_utc": "2026-09-07T19:00:47.841Z",
     "statement": "5 of 5 scored cases passed with a valid control; 1 requested behaviour(s) NOT_IMPLEMENTED, so the run is INCOMPLETE.",
-    "elapsed_ms": 18481,
+    "elapsed_ms": 18051,
     "cases": {
      "control-11386-harbour-farm": "PASS",
      "13429-ossian-derived": "PASS",
@@ -23,8 +23,15 @@
     }
    },
    "hosted": {
-    "fetched_utc": "2026-09-07T19:00:40.830Z",
+    "fetched_utc": "2026-09-07T19:01:05.681Z",
     "runs": [
+     {
+      "sha": "484f31b",
+      "status": "in_progress",
+      "conclusion": null,
+      "url": "https://github.com/Ventusltd/testcode/actions/runs/34153879470",
+      "created": "2026-09-07T19:00:19Z"
+     },
      {
       "sha": "6fccef2",
       "status": "in_progress",
@@ -87,13 +94,6 @@
       "conclusion": "success",
       "url": "https://github.com/Ventusltd/testcode/actions/runs/34149851496",
       "created": "2026-09-07T18:00:01Z"
-     },
-     {
-      "sha": "f1b0265",
-      "status": "completed",
-      "conclusion": "success",
-      "url": "https://github.com/Ventusltd/testcode/actions/runs/34149731959",
-      "created": "2026-09-07T17:58:03Z"
      }
     ]
    },
@@ -198,15 +198,15 @@
   }
  },
  "resources": {
-  "cycle_cpu_avg": 39,
+  "cycle_cpu_avg": 31,
   "cpu_floor_pct": 20,
   "cpus": 20,
-  "free_ram_gb": 4.46,
+  "free_ram_gb": 4.6,
   "d_gridatlas_ci_gb": 0.13,
   "ssd_ceiling_gb": 900,
   "testcode_pairs_mb": 30,
   "testcode_ceiling_mb": 300,
-  "cycle_ms": 21474
+  "cycle_ms": 20712
  },
  "adjustments": [
   "2026-09-07T16:29:47.092Z 20260907T141211Z-W: free RAM 3.4 GB against a 3 GB floor, repeats held this cycle",
@@ -223,7 +223,8 @@
   "2026-09-07T18:45:09.646Z 20260907T141211Z-W: free RAM 4.2 GB against a 3 GB floor, repeats held this cycle",
   "2026-09-07T18:59:43.470Z 20260907T141211Z-W: free RAM 3.1 GB against a 3 GB floor, repeats held this cycle",
   "2026-09-07T19:00:15.314Z 20260907T141211Z-W: free RAM 4.3 GB against a 3 GB floor, repeats held this cycle",
-  "2026-09-07T19:00:40.834Z 20260907T141211Z-W: free RAM 4.5 GB against a 3 GB floor, repeats held this cycle"
+  "2026-09-07T19:00:40.834Z 20260907T141211Z-W: free RAM 4.5 GB against a 3 GB floor, repeats held this cycle",
+  "2026-09-07T19:01:05.683Z 20260907T141211Z-W: free RAM 4.6 GB against a 3 GB floor, repeats held this cycle"
  ],
  "governor": {
   "ram_floor_gb": 3,
@@ -234,5 +235,5 @@
   "floor_hits": 0,
   "min_free_seen_gb": 3.14
  },
- "updated_utc": "2026-09-07T19:00:43.022Z"
+ "updated_utc": "2026-09-07T19:01:07.728Z"
 }

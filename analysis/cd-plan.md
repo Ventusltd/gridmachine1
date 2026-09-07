@@ -1,12 +1,12 @@
 # HOMAGE TO TURING - live CD deploy plan, written by the continuous runners
 
-Updated 2026-09-07T19:00:43.022Z · cycle 25 · lane windows-rig
+Updated 2026-09-07T19:01:07.728Z · cycle 26 · lane windows-rig
 
 Rule: prove offline first; if offline cannot prove it, prove it on the testcode hosted runner; nothing is promoted by a runner. Promotion is the owner's call.
 
 | pair | proof route | offline outcome | hosted (latest) | determinism rate | median run | parallel |
 |---|---|---|---|---|---|---|
-| GG2050-PAIR-20260907T141211Z-W | offline (D:, network cut) | INCOMPLETE (2026-09-07T19:00:22.391Z) | 6fccef2 in_progress | 568/568 | 43 s | 5 |
+| GG2050-PAIR-20260907T141211Z-W | offline (D:, network cut) | INCOMPLETE (2026-09-07T19:00:47.841Z) | 484f31b in_progress | 568/568 | 43 s | 5 |
 
 ## Per-case (offline receipt)
 
@@ -38,7 +38,7 @@ A disease closes only on evidence. States beginning OK_ are legitimate outcomes,
 
 | cycle CPU avg | floor | CPUs | free RAM | D:\gridatlas-ci | SSD ceiling | testcode pairs | ceiling |
 |---|---|---|---|---|---|---|---|
-| 39% | 20% | 20 | 4.46 GB | 0.13 GB | 900 GB | 30 MB | 300 MB |
+| 31% | 20% | 20 | 4.6 GB | 0.13 GB | 900 GB | 30 MB | 300 MB |
 
 Memory governor: floor 3 GB, reserve 4 GB, measured cost 0.91 GB per copy, cap 3 of 3, floor hits 0, least free seen 3.14 GB.
 
@@ -48,7 +48,6 @@ Floor 3 GB, reserve 4 GB, measured cost 0.91 GB per copy, cap 3 of 3, floor hits
 
 ## Adjustments made by the runner
 
-- 2026-09-07T17:29:50.722Z 20260907T141211Z-W: free RAM 3.5 GB against a 3 GB floor, repeats held this cycle
 - 2026-09-07T17:30:24.527Z 20260907T141211Z-W: free RAM 4.6 GB against a 3 GB floor, repeats held this cycle
 - 2026-09-07T17:30:50.447Z 20260907T141211Z-W: free RAM 4.5 GB against a 3 GB floor, repeats held this cycle
 - 2026-09-07T17:31:16.166Z 20260907T141211Z-W: free RAM 4.5 GB against a 3 GB floor, repeats held this cycle
@@ -60,6 +59,7 @@ Floor 3 GB, reserve 4 GB, measured cost 0.91 GB per copy, cap 3 of 3, floor hits
 - 2026-09-07T18:59:43.470Z 20260907T141211Z-W: free RAM 3.1 GB against a 3 GB floor, repeats held this cycle
 - 2026-09-07T19:00:15.314Z 20260907T141211Z-W: free RAM 4.3 GB against a 3 GB floor, repeats held this cycle
 - 2026-09-07T19:00:40.834Z 20260907T141211Z-W: free RAM 4.5 GB against a 3 GB floor, repeats held this cycle
+- 2026-09-07T19:01:05.683Z 20260907T141211Z-W: free RAM 4.6 GB against a 3 GB floor, repeats held this cycle
 
 
 ## Awaiting the owner
