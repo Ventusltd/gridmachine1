@@ -1,22 +1,22 @@
 # HOMAGE TO TURING - live CD deploy plan, written by the continuous runners
 
-Updated 2026-09-07T16:01:01.831Z · cycle 1 · lane windows-rig
+Updated 2026-09-07T16:13:27.695Z · cycle 2 · lane windows-rig
 
 Rule: prove offline first; if offline cannot prove it, prove it on the testcode hosted runner; nothing is promoted by a runner. Promotion is the owner's call.
 
 | pair | proof route | offline outcome | hosted (latest) | determinism rate | median run | parallel |
 |---|---|---|---|---|---|---|
-| GG2050-PAIR-20260907T141211Z-W | offline (D:, network cut) | INCOMPLETE (2026-09-07T16:00:34.322Z) | d463659 success | 0/0 | - | 5 |
+| GG2050-PAIR-20260907T141211Z-W | offline (D:, network cut) | INCOMPLETE (2026-09-07T16:01:07.883Z) | d463659 success | 25/25 | 35 s | 5 |
 
 ## Per-case (offline receipt)
 
-- control-11386-harbour-farm: PASS
-- 13429-ossian-derived: PASS
-- 13432-marram-unmapped: PASS
-- INTNED-britned-midpoint-anchor: PASS
-- INTNED-britned-gb-converter-anchor: PASS
-- INTVKL-viking-gb-only: PASS
-- INTNED-far-converter-to-gb: NOT_IMPLEMENTED
+- control-11386-harbour-farm: PASS · repeats 25/25
+- 13429-ossian-derived: PASS · repeats 25/25
+- 13432-marram-unmapped: PASS · repeats 25/25
+- INTNED-britned-midpoint-anchor: PASS · repeats 25/25
+- INTNED-britned-gb-converter-anchor: PASS · repeats 25/25
+- INTVKL-viking-gb-only: PASS · repeats 25/25
+- INTNED-far-converter-to-gb: NOT_IMPLEMENTED · repeats 0/0
 
 ## Disease watch (from this cycle's sentinels, no extra run)
 
@@ -38,7 +38,7 @@ A disease closes only on evidence. States beginning OK_ are legitimate outcomes,
 
 | cycle CPU avg | floor | CPUs | free RAM | D:\gridatlas-ci | SSD ceiling | testcode pairs | ceiling |
 |---|---|---|---|---|---|---|---|
-| 89.3% | 20% | 20 | 4.5 GB | 0.13 GB | 900 GB | 30 MB | 300 MB |
+| 29.1% | 20% | 20 | 6.33 GB | 0.13 GB | 900 GB | 30 MB | 300 MB |
 
 ## Adjustments made by the runner
 
